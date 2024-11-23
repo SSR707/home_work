@@ -43,6 +43,7 @@ export const createTebals = async () => {
       table.increments("id").primary();
       table.string("otp_code").notNullable();
       table.integer("user_id").notNullable();
+      table.timestamps('expires_at').defaultTo()
     });
   } catch (error) {
     throw error;
