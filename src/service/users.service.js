@@ -31,7 +31,7 @@ export const filterUsersService = (name, value) => {
 
 export const searchUsersService = (search) => {
   try {
-    return db("users").select("*").where("platform", "ILIKE", `%${search}%`);
+    return db("users").select("*").where("name", "ILIKE", `%${search}%`);
   } catch (error) {
     throw error;
   }

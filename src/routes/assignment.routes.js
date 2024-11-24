@@ -12,11 +12,11 @@ import {
 import { roleGuard } from "../middleware/index.js";
 export const assignmentRouter = express.Router();
 
-assignmentRouter.get("/page", roleGuard("Admin"), getPageAssignment);
-assignmentRouter.get("/filter", roleGuard("Admin"), filterAssignment);
-assignmentRouter.get("/search", roleGuard("Admin"), searchAssignment);
-assignmentRouter.get("/", roleGuard("Admin"), getAllAssignment);
-assignmentRouter.get("/:id", roleGuard("Admin"), getByIdAssignment);
-assignmentRouter.post("/", roleGuard("Admin"), createAssignment);
-assignmentRouter.put("/:id", roleGuard("Admin"), updateAssignment);
-assignmentRouter.delete("/:id", roleGuard("Admin"), deleteAssignment);
+assignmentRouter.get("/page", roleGuard('admin'), getPageAssignment);
+assignmentRouter.get("/filter", roleGuard('admin'), filterAssignment);
+assignmentRouter.get("/search", roleGuard('admin'), searchAssignment);
+assignmentRouter.get("/", roleGuard('admin'), getAllAssignment);
+assignmentRouter.get("/:id", roleGuard('admin'), getByIdAssignment);
+assignmentRouter.post("/", roleGuard('admin'), createAssignment);
+assignmentRouter.put("/:id", roleGuard('admin'), updateAssignment);
+assignmentRouter.delete("/:id", roleGuard('admin'), deleteAssignment);

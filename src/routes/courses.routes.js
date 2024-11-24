@@ -12,11 +12,11 @@ import {
 import { roleGuard } from "../middleware/index.js";
 export const coursesRouter = express.Router();
 
-coursesRouter.get("/page", roleGuard("Admin"), getPageCourses);
-coursesRouter.get("/filter", roleGuard("Admin"), filterCourses);
-coursesRouter.get("/search", roleGuard("Admin"), searchCourses);
-coursesRouter.get("/", roleGuard("Admin"), getAllCourses);
-coursesRouter.get("/:id", roleGuard("Admin"), getByIdCourses);
-coursesRouter.post("/", roleGuard("Admin"), createCourses);
-coursesRouter.put("/:id", roleGuard("Admin"), updateCourses);
-coursesRouter.delete("/:id", roleGuard("Admin"), deleteCourses);
+coursesRouter.get("/page", roleGuard('admin'), getPageCourses);
+coursesRouter.get("/filter", roleGuard('admin'), filterCourses);
+coursesRouter.get("/search", roleGuard('admin'), searchCourses);
+coursesRouter.get("/", roleGuard('admin'), getAllCourses);
+coursesRouter.get("/:id", roleGuard('admin'), getByIdCourses);
+coursesRouter.post("/", roleGuard('admin'), createCourses);
+coursesRouter.put("/:id", roleGuard('admin'), updateCourses);
+coursesRouter.delete("/:id", roleGuard('admin'), deleteCourses);

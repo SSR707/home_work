@@ -9,10 +9,9 @@ export default passport.use(
       clientSecret: config.client.secret,
       callbackURL: "http://localhost:3000/api/v1/auth/google/callback",
     },
-    function (accessToken, refreshToken, profile, done) {
+    function (accessToken, profile, done) {
       console.log({
         accessToken,
-        refreshToken,
         profile,
         done,
       });

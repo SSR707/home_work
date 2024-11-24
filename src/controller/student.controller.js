@@ -45,7 +45,8 @@ export const searchStudents = async (req, res, next) => {
 }
 export const filterStudents = async (req, res, next) => {
     try {
-        const Students = await filterStudentService(...req.query)
+        const key = String(Object.keys(req.query)[0]);
+        const Students = await filterStudentService(key ,req.query[key])
         if (!Students) {
             return res.status(404).send({ msg: "Malumot Topilmadi" })
         }
@@ -73,13 +74,13 @@ export const createStudents = async (req, res, next) => {
                 .status(400)
                 .send({ msg: "MALUMORLAENI TOQLI VA TOGRI KIRTING" })
         }
-        const adress = new createStudentService(...req.body)
+        const adress = await createStudentService({...req.body})
         return res.status(201).send({
             status: "Created",
             data: adress,
         })
     } catch (error) {
-        next(new ApiError(error.statusCode, error.messages))
+        next(error)
     }
 }
 

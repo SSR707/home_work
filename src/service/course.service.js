@@ -25,7 +25,7 @@ export const searchCoursesService = (search) => {
   try {
     return db("courses")
       .select("*")
-      .where("platform", "ILIKE", `%${search}%`);
+      .where("name", "ILIKE", `%${search}%`);
   } catch (error) {
     throw error;
   }
@@ -40,7 +40,7 @@ export const getByIdCoursesService = (id) => {
 export const createCoursesService = (data) => {
   try {
     return db("courses")
-      .insert({ ...data })
+      .insert(data)
       .returning("*");
   } catch (error) {
     throw error;
