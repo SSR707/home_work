@@ -1,7 +1,6 @@
 import { registerValidation } from "../validation/index.js";
 import db from "../database/db.js";
-import { accessTokenSing, otpGenerate, refreshTokenSing } from "../utils/index.js";
-import { date } from "joi";
+import { accessTokenSing, hashPassword, otpGenerate, refreshTokenSing } from "../utils/index.js";
 
 export const registerController = async (req, res, next) => {
   try {
@@ -9,7 +8,7 @@ export const registerController = async (req, res, next) => {
     if (error) {
       res.status(400).send("Mlumotlani togri Kiriting");
     }
-    const { email } = req.body;
+    const { email , password} = req.body;
     const currentUser = await db("users")
       .select("*")
       .where("email", "=", email);
@@ -25,7 +24,8 @@ export const registerController = async (req, res, next) => {
         <h2 style="background: yellow;color: rgb(0, 0, 0);width: 7%;">${otp}</h2>
         </h1>`
     );
-    const user = createUser(req.body);
+    const hashpass = await hashPassword(password)
+    const user = createUser({...req.body ,password:hashpass});
     const otp_db = createOtp({
       user_id: user.id,
       otp_code: otp,

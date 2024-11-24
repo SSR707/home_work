@@ -1,5 +1,4 @@
 import Joi from "joi";
-import email from "../config/email";
 
 export const registerValidation  = (data) => {
     const validation = Joi.object({
@@ -12,4 +11,5 @@ export const registerValidation  = (data) => {
         .required(),
         last_login: Joi.string().min(2).required()
     })
+    return validation.validate(data)
 }

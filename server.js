@@ -7,7 +7,9 @@ const startApp = async () => {
     app.listen(config.port.port, () => {
       console.log(`${port} started ...`);
     });
-  } catch (error) {}
+  } catch (error) {
+    console.log(error)
+  }
 };
 
 startApp();
