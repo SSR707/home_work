@@ -6,7 +6,7 @@ import {
     getByIdCoursesService,
     updateCoursesService,
     deleteCoursesService,
-  } from "../services/index";
+  } from "../service/index.js";
 import { CoursesValidation } from "../validation/index.js";
   
   export const getAllCourses = async (req, res, next) => {

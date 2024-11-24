@@ -1,7 +1,6 @@
 import express from "express";
 import morgan from "morgan";
-import { createTebals } from "./database/index.js";
-import { error } from "winston";
+import { createTebals } from "./database/tebals.js";
 import { assignmentRouter, authRouter, coursesRouter, studentsRouter, teacherRouter, userRouter } from "./routes/index.js";
 import { authGuard } from "./middleware/index.js";
 

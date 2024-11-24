@@ -1,4 +1,3 @@
-import { ForbiddenError } from "../../utils/index.js"
 
 export const roleGuard = (...roles) => {
     return async (req, res, next) => {
@@ -6,7 +5,7 @@ export const roleGuard = (...roles) => {
             const { role } = req.user
 
             if (!roles.includes(role)) {
-                throw new ForbiddenError("access deny!")
+                console.log("access deny!")
             }
 
             next()

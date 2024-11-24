@@ -7,7 +7,7 @@ import {
     updateUsersService,
     deleteUsersService,
     getProfileService,
-} from "../services/index"
+} from "../service/index.js"
 
 export const getProfile = async (req, res, next) => {
     try {

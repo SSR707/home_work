@@ -9,7 +9,7 @@ import {
   updateAssignment,
   deleteAssignment,
 } from "../controller/index.js";
-import { roleGuard } from "../middlewares/index.js";
+import { roleGuard } from "../middleware/index.js";
 export const assignmentRouter = express.Router();
 
 assignmentRouter.get("/page", roleGuard("Admin"), getPageAssignment);

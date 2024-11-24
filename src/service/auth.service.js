@@ -1,5 +1,5 @@
 
-import db from "../databases/index.js"
+import db from "../database/db.js";
 export const createUserService  = (data) => {
     try {
         return db("users").insert({...data}).returning("*")

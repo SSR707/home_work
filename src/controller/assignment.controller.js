@@ -6,7 +6,7 @@ import {
   getByIdAssignmentService,
   updateAssignmentService,
   deleteAssignmentService,
-} from "../services/index";
+} from "../service/index.js";
 import { AssignmentValidation } from "../validation/index.js";
 
 

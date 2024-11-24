@@ -1,5 +1,4 @@
-import db from "../databases/index.js";
-
+import db from "../database/db.js";
 export const getAllCoursesService = () => {
   try {
     return db("courses").select("*");

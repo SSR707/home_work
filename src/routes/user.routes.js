@@ -9,7 +9,7 @@ import {
     updateUser,
     deleteUser,
 } from "../controller/index.js"
-import { roleGuard } from "../middlewares/index.js"
+import { roleGuard } from "../middleware/index.js"
 
 export const userRouter = express.Router()
 

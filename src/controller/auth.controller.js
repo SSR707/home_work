@@ -1,6 +1,7 @@
 import { registerValidation } from "../validation/index.js";
 import db from "../database/db.js";
 import { accessTokenSing, hashPassword, otpGenerate, refreshTokenSing } from "../utils/index.js";
+import { createOtp, createUserService } from "../service/index.js";
 
 export const registerController = async (req, res, next) => {
   try {
@@ -25,7 +26,7 @@ export const registerController = async (req, res, next) => {
         </h1>`
     );
     const hashpass = await hashPassword(password)
-    const user = createUser({...req.body ,password:hashpass});
+    const user = createUserService({...req.body ,password:hashpass});
     const otp_db = createOtp({
       user_id: user.id,
       otp_code: otp,

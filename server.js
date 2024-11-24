@@ -5,7 +5,7 @@ import port from "./src/config/port.js";
 const startApp = async () => {
   try {
     app.listen(config.port.port, () => {
-      console.log(`${port} started ...`);
+      console.log(`${config.port.port} started ...`);
     });
   } catch (error) {
     console.log(error)

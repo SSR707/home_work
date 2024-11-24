@@ -1,12 +1,4 @@
-import {
-    getAllTeacherService,
-    getPageTeacherService,
-    filterTeacherService,
-    searchTeacherService,
-    getByIdTeacherService,
-    updateTeacherService,
-    deleteTeacherService,
-} from "../services/index"
+import { createTeacherService, deleteTeacherService, filterteacherService, getAllTeacherService, getByIdTeacherService, getPageTeacherService, searchTeacherService, updateTeacherService } from "../service/index.js"
 import { TeacherValidation } from "../validation/index.js"
 
 export const getAllTeacher = async (req, res, next) => {
@@ -44,7 +36,7 @@ export const searchTeacher = async (req, res, next) => {
 }
 export const filterTeacher = async (req, res, next) => {
     try {
-        const Teacher = await filterTeacherService(...req.query)
+        const Teacher = await filterteacherService(...req.query)
         if (!Teacher) {
             return res.status(404).send({ msg: "Malumot Topilmadi" })
         }

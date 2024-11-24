@@ -9,7 +9,7 @@ import {
   updateStudents,
   deleteStudents,
 } from "../controller/index.js";
-import { roleGuard } from "../middlewares/index.js";
+import { roleGuard } from "../middleware/index.js";
 export const studentsRouter = express.Router();
 
 studentsRouter.get("/page", roleGuard("Admin"), getPageStudents);
