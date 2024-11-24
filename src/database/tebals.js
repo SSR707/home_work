@@ -8,9 +8,9 @@ export const createTebals = async () => {
       table.string("email").unique().notNullable();
       table.string("password").notNullable();
       table.timestamp("data_created").defaultTo(knex.fn.now());
-      table.string("last_login");
+      table.timestamp("last_login");
       table.boolean("is_active").defaultTo(false);
-      table.enu("role", ["student", "teacher", "admin"]);
+      table.enu("role", ["student", "teacher", "admin"]).defaultTo('student');
     });
 
     await knex.schema.createTable("teacher", (table) => {
@@ -43,7 +43,7 @@ export const createTebals = async () => {
       table.increments("id").primary();
       table.string("otp_code").notNullable();
       table.integer("user_id").notNullable();
-      table.timestamps('expires_at').defaultTo(knex.raw("DATE_ADD(NOW(), INTERVAL 10 MINUTE)"))
+      table.timestamp("expires_at").defaultTo(knex.raw("CURRENT_TIMESTAMP + interval '10 minutes'"));
     });
   } catch (error) {
     throw error;

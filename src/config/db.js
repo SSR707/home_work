@@ -1,7 +1,6 @@
 import { config } from "dotenv";
 
 config()
-
 export default { 
     db:{
         user: process.env.PG_USER,

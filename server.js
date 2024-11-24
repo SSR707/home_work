@@ -1,6 +1,6 @@
 import app from "./src/app.js";
 import { config } from "./src/config/index.js";
-import port from "./src/config/port.js";
+import db from "./src/config/db.js";
 
 const startApp = async () => {
   try {
@@ -8,7 +8,7 @@ const startApp = async () => {
       console.log(`${config.port.port} started ...`);
     });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
 
