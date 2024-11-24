@@ -6,11 +6,11 @@ export const createTebals = async () => {
       table.increments("id").primary();
       table.string("name");
       table.string("email").unique().notNullable();
-      table.string("password").notNullable();
+      table.string("password");
       table.timestamp("data_created").defaultTo(knex.fn.now());
-      table.timestamp("last_login");
+      table.string("googleId");
       table.boolean("is_active").defaultTo(false);
-      table.enu("role", ["student", "teacher", "admin"]).defaultTo('student');
+      table.enu("role", ["student", "teacher", "admin"]).defaultTo("student");
     });
 
     await knex.schema.createTable("teacher", (table) => {
@@ -43,7 +43,9 @@ export const createTebals = async () => {
       table.increments("id").primary();
       table.string("otp_code").notNullable();
       table.integer("user_id").notNullable();
-      table.timestamp("expires_at").defaultTo(knex.raw("CURRENT_TIMESTAMP + interval '10 minutes'"));
+      table
+        .timestamp("expires_at")
+        .defaultTo(knex.raw("CURRENT_TIMESTAMP + interval '10 minutes'"));
     });
   } catch (error) {
     throw error;

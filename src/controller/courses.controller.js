@@ -46,7 +46,7 @@ export const searchCourses = async (req, res, next) => {
 export const filterCourses = async (req, res, next) => {
   try {
     const key = String(Object.keys(req.query)[0]);
-    const Courses = await filterCoursesService(key ,req.query[key]);
+    const Courses = await filterCoursesService(key, req.query[key]);
     if (!Courses) {
       return res.status(404).send({ msg: "Malumot Topilmadi" });
     }
@@ -74,7 +74,7 @@ export const createCourses = async (req, res, next) => {
         .status(400)
         .send({ msg: "MALUMORLAENI TOQLI VA TOGRI KIRTING" });
     }
-    const adress = await createCoursesService({...req.body});
+    const adress = await createCoursesService({ ...req.body });
     return res.status(201).send({
       status: "Created",
       data: adress,

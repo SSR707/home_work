@@ -23,9 +23,7 @@ export const filterCoursesService = (name, value) => {
 
 export const searchCoursesService = (search) => {
   try {
-    return db("courses")
-      .select("*")
-      .where("name", "ILIKE", `%${search}%`);
+    return db("courses").select("*").where("name", "ILIKE", `%${search}%`);
   } catch (error) {
     throw error;
   }
@@ -39,9 +37,7 @@ export const getByIdCoursesService = (id) => {
 };
 export const createCoursesService = (data) => {
   try {
-    return db("courses")
-      .insert(data)
-      .returning("*");
+    return db("courses").insert(data).returning("*");
   } catch (error) {
     throw error;
   }

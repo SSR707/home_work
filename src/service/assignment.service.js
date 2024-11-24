@@ -24,7 +24,9 @@ export const filterAssignmentService = (name, value) => {
 
 export const searchAssignmentService = (search) => {
   try {
-    return db("assignment").select("*").where("course_id", "ILIKE", `%${search}%`);
+    return db("assignment")
+      .select("*")
+      .where("course_id", "ILIKE", `%${search}%`);
   } catch (error) {
     throw error;
   }
@@ -37,12 +39,12 @@ export const getByIdAssignmentService = (id) => {
   }
 };
 export const createAssignmentService = (data) => {
-    try {
-        return db("assignment").insert(data).returning("*")
-    } catch (error) {
-        throw error
-    }
-}
+  try {
+    return db("assignment").insert(data).returning("*");
+  } catch (error) {
+    throw error;
+  }
+};
 
 export const updateAssignmentService = (id, data) => {
   try {

@@ -1,9 +1,9 @@
 import { config } from "dotenv";
-config()
+config();
 
 export default {
-    email:{
-        user:process.env.USER_MAIL,
-        passwrod:process.env.USER_MAIL_PASSWORD
-    }
-}
+  email: {
+    user: process.env.USER_MAIL,
+    passwrod: process.env.USER_MAIL_PASSWORD,
+  },
+};

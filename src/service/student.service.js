@@ -24,7 +24,9 @@ export const filterStudentService = (name, value) => {
 
 export const searchStudentService = (search) => {
   try {
-    return db("student").select("*").where("promission", "ILIKE", `%${search}%`);
+    return db("student")
+      .select("*")
+      .where("promission", "ILIKE", `%${search}%`);
   } catch (error) {
     throw error;
   }
@@ -37,12 +39,12 @@ export const getByIdStudentService = (id) => {
   }
 };
 export const createStudentService = (data) => {
-    try {
-        return db("student").insert(data).returning("*")
-    } catch (error) {
-        throw error
-    }
-}
+  try {
+    return db("student").insert(data).returning("*");
+  } catch (error) {
+    throw error;
+  }
+};
 
 export const updateStudentService = (id, data) => {
   try {

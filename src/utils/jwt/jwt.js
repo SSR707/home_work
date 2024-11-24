@@ -8,7 +8,7 @@ export const accessTokenSing = async (payload) => {
 };
 
 export const refreshTokenSing = async (payload) => {
-    return jwt.sign(payload, config.jwt.refresh.secret, {
-      expiresIn: config.jwt.refresh.expiresIn,
-    });
-  };
+  return jwt.sign(payload, config.jwt.refresh.secret, {
+    expiresIn: config.jwt.refresh.expiresIn,
+  });
+};

@@ -19,7 +19,29 @@ import {
   deleteOtpService,
   updateUsersService,
 } from "../service/index.js";
-
+//gogle passport orgali royhatan otish
+export const googlePassportRegisterController = async (req, res, next) => {
+  try {
+    const { name, email, googleId, accessToken } = req.user;
+    const user = await createUserService({
+      name,
+      email,
+      googleId,
+      is_active: true,
+    });
+    const payload = {
+      id: user[0].id,
+      sub: email,
+      role: user[0].role,
+    };
+    const accessTokenn = await accessTokenSing(payload);
+    const refreshTokenn = await refreshTokenSing(payload);
+    return res.status(200).send({ accessTokenn, refreshTokenn });
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
 export const registerController = async (req, res, next) => {
   try {
     const { error, valuse } = registerValidation(req.body);
@@ -80,7 +102,7 @@ export const loginController = async (req, res, next) => {
     const payload = {
       id: currentUser[0].id,
       sub: email,
-      role: "student",
+      role: currentUser[0].role,
     };
     const accessToken = await accessTokenSing(payload);
     const refreshToken = await refreshTokenSing(payload);

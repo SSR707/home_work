@@ -46,7 +46,7 @@ export const searchAssignment = async (req, res, next) => {
 export const filterAssignment = async (req, res, next) => {
   try {
     const key = String(Object.keys(req.query)[0]);
-    const Assignment = await filterAssignmentService(key ,req.query[key]);
+    const Assignment = await filterAssignmentService(key, req.query[key]);
     if (!Assignment) {
       return res.status(404).send({ msg: "Malumot Topilmadi" });
     }
@@ -74,7 +74,7 @@ export const createAssignment = async (req, res, next) => {
         .status(400)
         .send({ msg: "MALUMORLAENI TOQLI VA TOGRI KIRTING" });
     }
-    const adress = await createAssignmentService({...req.body});
+    const adress = await createAssignmentService({ ...req.body });
     return res.status(201).send({
       status: "Created",
       data: adress,
