@@ -8,6 +8,7 @@ import {
   updateStudentService,
   deleteStudentService,
 } from "../service/index.js";
+import { logger } from "../utils/index.js";
 import { StudentsValidation } from "../validation/index.js";
 
 export const getAllStudents = async (req, res, next) => {
@@ -15,6 +16,7 @@ export const getAllStudents = async (req, res, next) => {
     const Students = await getAllStudentService();
     return res.status(200).send({ status: "Success", data: Students });
   } catch (error) {
+    logger.error(error.message);
     next(error);
   }
 };
@@ -27,6 +29,7 @@ export const getByIdStudents = async (req, res, next) => {
     }
     return res.status(200).send({ status: "Success", data: Students });
   } catch (error) {
+    logger.error(error.message);
     next(error);
   }
 };
@@ -40,6 +43,7 @@ export const searchStudents = async (req, res, next) => {
     }
     return res.status(200).send({ status: "Success", data: Students });
   } catch (error) {
+    logger.error(error.message);
     next(error);
   }
 };
@@ -52,6 +56,7 @@ export const filterStudents = async (req, res, next) => {
     }
     return res.status(200).send({ status: "Success", data: Students });
   } catch (error) {
+    logger.error(error.message);
     next(error);
   }
 };
@@ -62,6 +67,7 @@ export const getPageStudents = async (req, res, next) => {
     const Students = await getPageStudentService(skip, limit);
     return res.status(200).send({ status: "Success", data: Students });
   } catch (error) {
+    logger.error(error.message);
     next(error);
   }
 };
@@ -80,6 +86,7 @@ export const createStudents = async (req, res, next) => {
       data: adress,
     });
   } catch (error) {
+    logger.error(error.message);
     next(error);
   }
 };
@@ -97,6 +104,7 @@ export const updateStudents = async (req, res, next) => {
     );
     return res.status(200).send({ status: "Success", id: newStudents.id });
   } catch (error) {
+    logger.error(error.message);
     next(error);
   }
 };
@@ -110,6 +118,7 @@ export const deleteStudents = async (req, res, next) => {
     const deleteStudents = await deleteStudentService(req.params.id);
     return res.status(200).send({ status: "Success", id: deleteStudents.id });
   } catch (error) {
+    logger.error(error.message);
     next(error);
   }
 };

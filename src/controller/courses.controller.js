@@ -8,6 +8,7 @@ import {
   deleteCoursesService,
   createCoursesService,
 } from "../service/index.js";
+import { logger } from "../utils/index.js";
 import { CoursesValidation } from "../validation/index.js";
 
 export const getAllCourses = async (req, res, next) => {
@@ -27,6 +28,7 @@ export const getByIdCourses = async (req, res, next) => {
     }
     return res.status(200).send({ status: "Success", data: Courses });
   } catch (error) {
+    logger.error(error.message);
     next(error);
   }
 };
@@ -40,6 +42,7 @@ export const searchCourses = async (req, res, next) => {
     }
     return res.status(200).send({ status: "Success", data: Courses });
   } catch (error) {
+    logger.error(error.message);
     next(error);
   }
 };
@@ -52,6 +55,7 @@ export const filterCourses = async (req, res, next) => {
     }
     return res.status(200).send({ status: "Success", data: Courses });
   } catch (error) {
+    logger.error(error.message);
     next(error);
   }
 };
@@ -62,6 +66,7 @@ export const getPageCourses = async (req, res, next) => {
     const Courses = await getPageCoursesService(skip, limit);
     return res.status(200).send({ status: "Success", data: Courses });
   } catch (error) {
+    logger.error(error.message);
     next(error);
   }
 };
@@ -80,6 +85,7 @@ export const createCourses = async (req, res, next) => {
       data: adress,
     });
   } catch (error) {
+    logger.error(error.message);
     next(error);
   }
 };
@@ -97,6 +103,7 @@ export const updateCourses = async (req, res, next) => {
     );
     return res.status(200).send({ status: "Success", id: newCourses.id });
   } catch (error) {
+    logger.error(error.message);
     next(error);
   }
 };
@@ -110,6 +117,7 @@ export const deleteCourses = async (req, res, next) => {
     const deleteCourses = await deleteCoursesService(req.params.id);
     return res.status(200).send({ status: "Success", id: deleteCourses.id });
   } catch (error) {
+    logger.error(error.message);
     next(error);
   }
 };

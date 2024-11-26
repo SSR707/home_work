@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import { config } from "../../config/index.js";
+import { logger } from "../../utils/index.js";
 export const authGuard = (req, res, next) => {
   try {
     if (!req.headers.authorization) {
@@ -11,7 +12,7 @@ export const authGuard = (req, res, next) => {
     }
     jwt.verify(token, config.jwt.access.secret, (err, payload) => {
       if (err) {
-        console.log(err);
+        logger.error(err);
         return res.status(403).send("Forbidden");
       }
       req.user = payload;

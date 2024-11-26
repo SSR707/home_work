@@ -8,6 +8,7 @@ import {
   deleteAssignmentService,
   createAssignmentService,
 } from "../service/index.js";
+import { logger } from "../utils/index.js";
 import { AssignmentValidation } from "../validation/index.js";
 
 export const getAllAssignment = async (req, res, next) => {
@@ -15,6 +16,7 @@ export const getAllAssignment = async (req, res, next) => {
     const Assignment = await getAllAssignmentService();
     return res.status(200).send({ status: "Success", data: Assignment });
   } catch (error) {
+    logger.error(error)
     next(error);
   }
 };
@@ -27,6 +29,7 @@ export const getByIdAssignment = async (req, res, next) => {
     }
     return res.status(200).send({ status: "Success", data: Assignment });
   } catch (error) {
+    logger.error(error)
     next(error);
   }
 };
@@ -40,6 +43,7 @@ export const searchAssignment = async (req, res, next) => {
     }
     return res.status(200).send({ status: "Success", data: Assignment });
   } catch (error) {
+    logger.error(error)
     next(error);
   }
 };
@@ -52,6 +56,7 @@ export const filterAssignment = async (req, res, next) => {
     }
     return res.status(200).send({ status: "Success", data: Assignment });
   } catch (error) {
+    logger.error(error)
     next(error);
   }
 };
@@ -62,6 +67,7 @@ export const getPageAssignment = async (req, res, next) => {
     const Assignment = await getPageAssignmentService(skip, limit);
     return res.status(200).send({ status: "Success", data: Assignment });
   } catch (error) {
+    logger.error(error)
     next(error);
   }
 };
@@ -80,6 +86,7 @@ export const createAssignment = async (req, res, next) => {
       data: adress,
     });
   } catch (error) {
+    logger.error(error)
     next(error);
   }
 };
@@ -97,6 +104,7 @@ export const updateAssignment = async (req, res, next) => {
     );
     return res.status(200).send({ status: "Success", id: newAssignment.id });
   } catch (error) {
+    logger.error(error)
     next(error);
   }
 };
@@ -110,6 +118,7 @@ export const deleteAssignment = async (req, res, next) => {
     const deleteAssignment = await deleteAssignmentService(req.params.id);
     return res.status(200).send({ status: "Success", id: deleteAssignment.id });
   } catch (error) {
+    logger.error(error)
     next(error);
   }
 };

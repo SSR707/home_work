@@ -9,6 +9,7 @@ import {
   accessTokenSing,
   comparePassword,
   hashPassword,
+  logger,
   otpGenerate,
   refreshTokenSing,
   sendMail,
@@ -38,7 +39,7 @@ export const googlePassportRegisterController = async (req, res, next) => {
     const refreshTokenn = await refreshTokenSing(payload);
     return res.status(200).send({ accessTokenn, refreshTokenn });
   } catch (error) {
-    console.log(error);
+    logger.error(error.message);
     next(error);
   }
 };
@@ -72,6 +73,7 @@ export const registerController = async (req, res, next) => {
     });
     res.status(201).send("created");
   } catch (error) {
+    logger.error(error.message);
     next(error);
   }
 };
@@ -108,6 +110,7 @@ export const loginController = async (req, res, next) => {
     const refreshToken = await refreshTokenSing(payload);
     return res.status(200).send({ accessToken, refreshToken });
   } catch (error) {
+    logger.error(error.message);
     next(error);
   }
 };
@@ -140,6 +143,7 @@ export const verifyToken = async (req, res, next) => {
     await updateUsersService(currentUser[0].id, { is_active: true });
     return res.status(200).send({ msg: "User is Actived" });
   } catch (error) {
+    logger.error(error.message);
     next(error);
   }
 };

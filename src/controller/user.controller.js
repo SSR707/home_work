@@ -8,12 +8,14 @@ import {
   deleteUsersService,
   getProfileService,
 } from "../service/index.js";
+import { logger } from "../utils/index.js";
 
 export const getProfile = async (req, res, next) => {
   try {
     const user = await getProfileService(req.user.sub);
     return res.status(200).send({ status: "Success", data: user });
   } catch (error) {
+    logger.error(error.message);
     next(error);
   }
 };
@@ -23,6 +25,7 @@ export const getAllUsers = async (req, res, next) => {
     const users = await getAllUsersService();
     return res.status(200).send({ status: "Success", data: users });
   } catch (error) {
+    logger.error(error.message);
     next(error);
   }
 };
@@ -35,6 +38,7 @@ export const getByIdUser = async (req, res, next) => {
     }
     return res.status(200).send({ status: "Success", data: user });
   } catch (error) {
+    logger.error(error.message);
     next(error);
   }
 };
@@ -48,6 +52,7 @@ export const searchrUser = async (req, res, next) => {
     }
     return res.status(200).send({ status: "Success", data: users });
   } catch (error) {
+    logger.error(error.message);
     next(error);
   }
 };
@@ -60,6 +65,7 @@ export const filterUser = async (req, res, next) => {
     }
     return res.status(200).send({ status: "Success", data: users });
   } catch (error) {
+    logger.error(error.message);
     next(error);
   }
 };
@@ -70,6 +76,7 @@ export const getPageUser = async (req, res, next) => {
     const users = await getPageUsersService(skip, limit);
     return res.status(200).send({ status: "Success", data: users });
   } catch (error) {
+    logger.error(error.message);
     next(error);
   }
 };
@@ -84,6 +91,7 @@ export const updateUser = async (req, res, next) => {
     const newUser = await updateUsersService(req.params.id, newUserData);
     return res.status(200).send({ status: "Success", id: newUser.id });
   } catch (error) {
+    logger.error(error.message);
     next(error);
   }
 };
@@ -97,6 +105,7 @@ export const deleteUser = async (req, res, next) => {
     const deleteUser = await deleteUsersService(req.params.id);
     return res.status(200).send({ status: "Success", id: deleteUser.id });
   } catch (error) {
+    logger.error(error.message);
     next(error);
   }
 };
