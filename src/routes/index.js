@@ -4,3 +4,5 @@ export * from "./courses.routes.js";
 export * from "./student.routes.js";
 export * from "./teacher.routes.js";
 export * from "./user.routes.js";
+export * from './homework.routes.js'
+export * from './lesson.routes.js'

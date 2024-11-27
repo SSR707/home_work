@@ -47,6 +47,28 @@ export const createTebals = async () => {
         .timestamp("expires_at")
         .defaultTo(knex.raw("CURRENT_TIMESTAMP + interval '10 minutes'"));
     });
+    
+    await knex.schema.createTable("lesson", (table) => {
+      table.increments("id").primary();
+      table.string("lesson_name");
+      table.integer("homework_id").notNullable();
+      table.string("vidio");
+      table.string("homework");
+      table.string("room");
+      table.time("start_time");
+      table.time("end_time");
+    });
+
+    await knex.schema.createTable("homework", (table) => {
+      table.increments("id").primary();
+      table.string("text");
+      table.integer("user_id").notNullable();
+      table.string("file");
+      table.string("link");
+      table.string("grads");
+      table.time("start_time");
+      table.time("end_time");
+    });
   } catch (error) {
     throw error;
   } finally {

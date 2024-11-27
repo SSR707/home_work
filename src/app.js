@@ -5,6 +5,8 @@ import {
   assignmentRouter,
   authRouter,
   coursesRouter,
+  homeworkRouter,
+  lessonRouter,
   studentsRouter,
   teacherRouter,
   userRouter,
@@ -22,7 +24,9 @@ app.use("/api/v1/users", authGuard, userRouter);
 app.use("/api/v1/teacher", authGuard, teacherRouter);
 app.use("/api/v1/students", authGuard, studentsRouter);
 app.use("/api/v1/assignment", authGuard, assignmentRouter);
-app.use("/api/v1/courses", authGuard, coursesRouter);
+app.use("/api/v1/courses", authGuard, coursesRouter)
+app.use("/api/v1/homework", authGuard, homeworkRouter);
+app.use("/api/v1/lesson", authGuard, lessonRouter);;
 
 app.get("/api/v1/setup", async (req, res) => {
   await createTebals();
