@@ -6,3 +6,4 @@ export * from "./teacher.controller.js";
 export * from "./user.controller.js";
 export * from './homework.controller.js'
 export * from './lesson.controller.js'
+export * from './exam.controller.js'

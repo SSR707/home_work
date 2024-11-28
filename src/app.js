@@ -10,6 +10,7 @@ import {
   studentsRouter,
   teacherRouter,
   userRouter,
+  examRouter
 } from "./routes/index.js";
 import { authGuard } from "./middleware/index.js";
 
@@ -24,9 +25,11 @@ app.use("/api/v1/users", authGuard, userRouter);
 app.use("/api/v1/teacher", authGuard, teacherRouter);
 app.use("/api/v1/students", authGuard, studentsRouter);
 app.use("/api/v1/assignment", authGuard, assignmentRouter);
-app.use("/api/v1/courses", authGuard, coursesRouter)
+app.use("/api/v1/courses", authGuard, coursesRouter);
 app.use("/api/v1/homework", authGuard, homeworkRouter);
-app.use("/api/v1/lesson", authGuard, lessonRouter);;
+app.use("/api/v1/lesson", authGuard, lessonRouter);
+app.use("/api/v1/eaxms", authGuard, examRouter);
+
 
 app.get("/api/v1/setup", async (req, res) => {
   await createTebals();

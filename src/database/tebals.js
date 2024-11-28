@@ -47,7 +47,7 @@ export const createTebals = async () => {
         .timestamp("expires_at")
         .defaultTo(knex.raw("CURRENT_TIMESTAMP + interval '10 minutes'"));
     });
-    
+
     await knex.schema.createTable("lesson", (table) => {
       table.increments("id").primary();
       table.string("lesson_name");
@@ -66,6 +66,16 @@ export const createTebals = async () => {
       table.string("file");
       table.string("link");
       table.string("grads");
+      table.time("start_time");
+      table.time("end_time");
+    });
+
+    await knex.schema.createTable("exam", (table) => {
+      table.increments("id").primary();
+      table.integer("student_id").notNullable();
+      table.integer("lesson_id").notNullable();
+      table.float("score");
+      table.date("exam_date");
       table.time("start_time");
       table.time("end_time");
     });
