@@ -16,9 +16,8 @@ export const authGuard = (c) => {
         return c.status(403).json("Forbidden");
       }
       c.req.user = payload;
-      c.next();
     });
   } catch (error) {
-    c.next(error);
+    return c.json({ status: "Error", message: error.message }, 500);
   }
 };

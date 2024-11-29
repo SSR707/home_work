@@ -16,7 +16,7 @@ export const getAllPosts = async (c) => {
     const Posts = await getAllPostsService();
     return c.status(200).json({ status: "Success", data: Posts });
   } catch (error) {
-    c.next(error);
+    return c.json({ status: "Error", message: error.message }, 500);
   }
 };
 
@@ -29,7 +29,7 @@ export const getByIdPosts = async (c) => {
     return c.status(200).json({ status: "Success", data: Posts });
   } catch (error) {
     logger.error(error.message);
-    c.next(error);
+    return c.json({ status: "Error", message: error.message }, 500);
   }
 };
 
@@ -43,7 +43,7 @@ export const searchPosts = async (c) => {
     return c.status(200).json({ status: "Success", data: Posts });
   } catch (error) {
     logger.error(error.message);
-    c.next(error);
+    return c.json({ status: "Error", message: error.message }, 500);
   }
 };
 export const filterPosts = async (c) => {
@@ -56,7 +56,7 @@ export const filterPosts = async (c) => {
     return c.status(200).json({ status: "Success", data: Posts });
   } catch (error) {
     logger.error(error.message);
-    c.next(error);
+    return c.json({ status: "Error", message: error.message }, 500);
   }
 };
 export const getPagePosts = async (c) => {
@@ -67,7 +67,7 @@ export const getPagePosts = async (c) => {
     return c.status(200).json({ status: "Success", data: Posts });
   } catch (error) {
     logger.error(error.message);
-    c.next(error);
+    return c.json({ status: "Error", message: error.message }, 500);
   }
 };
 
@@ -84,7 +84,7 @@ export const createPosts = async (c) => {
     });
   } catch (error) {
     logger.error(error.message);
-    c.next(error);
+    return c.json({ status: "Error", message: error.message }, 500);
   }
 };
 
@@ -99,7 +99,7 @@ export const updatePosts = async (c) => {
     return c.status(200).json({ status: "Success", id: newPosts.id });
   } catch (error) {
     logger.error(error.message);
-    c.next(error);
+    return c.json({ status: "Error", message: error.message }, 500);
   }
 };
 
@@ -113,6 +113,6 @@ export const deletePosts = async (c) => {
     return c.status(200).json({ status: "Success", id: deletePosts.id });
   } catch (error) {
     logger.error(error.message);
-    c.next(error);
+    return c.json({ status: "Error", message: error.message }, 500);
   }
 };

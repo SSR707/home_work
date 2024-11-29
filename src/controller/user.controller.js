@@ -16,7 +16,7 @@ export const getProfile = async (c) => {
     return c.status(200).json({ status: "Success", data: user });
   } catch (error) {
     logger.error(error.message);
-    c.next(error);
+    return c.json({ status: "Error", message: error.message }, 500);
   }
 };
 
@@ -26,7 +26,7 @@ export const getAllUsers = async (c) => {
     return c.status(200).json({ status: "Success", data: users });
   } catch (error) {
     logger.error(error.message);
-    c.next(error);
+    return c.json({ status: "Error", message: error.message }, 500);
   }
 };
 
@@ -39,7 +39,7 @@ export const getByIdUser = async (c) => {
     return c.status(200).json({ status: "Success", data: user });
   } catch (error) {
     logger.error(error.message);
-    c.next(error);
+    return c.json({ status: "Error", message: error.message }, 500);
   }
 };
 
@@ -53,7 +53,7 @@ export const searchrUser = async (c) => {
     return c.status(200).json({ status: "Success", data: users });
   } catch (error) {
     logger.error(error.message);
-    c.next(error);
+    return c.json({ status: "Error", message: error.message }, 500);
   }
 };
 export const filterUser = async (c) => {
@@ -66,7 +66,7 @@ export const filterUser = async (c) => {
     return c.status(200).json({ status: "Success", data: users });
   } catch (error) {
     logger.error(error.message);
-    c.next(error);
+    return c.json({ status: "Error", message: error.message }, 500);
   }
 };
 export const getPageUser = async (c) => {
@@ -77,7 +77,7 @@ export const getPageUser = async (c) => {
     return c.status(200).json({ status: "Success", data: users });
   } catch (error) {
     logger.error(error.message);
-    c.next(error);
+    return c.json({ status: "Error", message: error.message }, 500);
   }
 };
 
@@ -92,7 +92,7 @@ export const updateUser = async (c) => {
     return c.status(200).json({ status: "Success", id: newUser.id });
   } catch (error) {
     logger.error(error.message);
-    c.next(error);
+    return c.json({ status: "Error", message: error.message }, 500);
   }
 };
 
@@ -106,6 +106,6 @@ export const deleteUser = async (c) => {
     return c.status(200).json({ status: "Success", id: deleteUser.id });
   } catch (error) {
     logger.error(error.message);
-    c.next(error);
+    return c.json({ status: "Error", message: error.message }, 500);
   }
 };

@@ -30,7 +30,7 @@ app.get("/api/v1/setup", async (c) => {
 
 app.use((err, c) => {
   if (err) return c.json({ err: err.messages });
-  c.text("Not found");
+  c.json({ status: "Error", message: err.message }, 500);
 });
 
 export default app;

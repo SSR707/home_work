@@ -40,7 +40,7 @@ export const googlePassportRegisterController = async (c) => {
     return c.status(200).json({ accessTokenn, refreshTokenn });
   } catch (error) {
     logger.error(error.message);
-    c.next(error);
+    return c.json({ status: "Error", message: error.message }, 500);
   }
 };
 export const registerController = async (c) => {
@@ -74,7 +74,7 @@ export const registerController = async (c) => {
     c.status(201).text("created");
   } catch (error) {
     logger.error(error.message);
-    c.next(error);
+    return c.json({ status: "Error", message: error.message }, 500);
   }
 };
 
@@ -111,7 +111,7 @@ export const loginController = async (c) => {
     return c.status(200).json({ accessToken, refreshToken });
   } catch (error) {
     logger.error(error.message);
-    c.next(error);
+    return c.json({ status: "Error", message: error.message }, 500);
   }
 };
 
@@ -144,6 +144,6 @@ export const verifyToken = async (c) => {
     return c.status(200).json({ msg: "User is Actived" });
   } catch (error) {
     logger.error(error.message);
-    c.next(error);
+    return c.json({ status: "Error", message: error.message }, 500);
   }
 };

@@ -16,7 +16,7 @@ import {
       const Tags = await getAllTagsService();
       return c.status(200).json({ status: "Success", data: Tags });
     } catch (error) {
-      c.next(error);
+      return c.json({ status: "Error", message: error.message }, 500);
     }
   };
   
@@ -29,7 +29,7 @@ import {
       return c.status(200).json({ status: "Success", data: Tags });
     } catch (error) {
       logger.error(error.message);
-      c.next(error);
+      return c.json({ status: "Error", message: error.message }, 500);
     }
   };
   
@@ -43,7 +43,7 @@ import {
       return c.status(200).json({ status: "Success", data: Tags });
     } catch (error) {
       logger.error(error.message);
-      c.next(error);
+      return c.json({ status: "Error", message: error.message }, 500);
     }
   };
   export const filterTags = async (c) => {
@@ -56,7 +56,7 @@ import {
       return c.status(200).json({ status: "Success", data: Tags });
     } catch (error) {
       logger.error(error.message);
-      c.next(error);
+      return c.json({ status: "Error", message: error.message }, 500);
     }
   };
   export const getPageTags = async (c) => {
@@ -67,7 +67,7 @@ import {
       return c.status(200).json({ status: "Success", data: Tags });
     } catch (error) {
       logger.error(error.message);
-      c.next(error);
+      return c.json({ status: "Error", message: error.message }, 500);
     }
   };
   
@@ -84,7 +84,7 @@ import {
       });
     } catch (error) {
       logger.error(error.message);
-      c.next(error);
+      return c.json({ status: "Error", message: error.message }, 500);
     }
   };
   
@@ -99,7 +99,7 @@ import {
       return c.status(200).json({ status: "Success", id: newTags.id });
     } catch (error) {
       logger.error(error.message);
-      c.next(error);
+      return c.json({ status: "Error", message: error.message }, 500);
     }
   };
   
@@ -113,7 +113,7 @@ import {
       return c.status(200).json({ status: "Success", id: deleteTags.id });
     } catch (error) {
       logger.error(error.message);
-      c.next(error);
+      return c.json({ status: "Error", message: error.message }, 500);
     }
   };
   

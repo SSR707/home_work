@@ -16,7 +16,7 @@ import {
       const Comments = await getAllCommentsService();
       return c.status(200).json({ status: "Success", data: Comments });
     } catch (error) {
-      c.next(error);
+      return c.json({ status: "Error", message: error.message }, 500);
     }
   };
   
@@ -29,7 +29,7 @@ import {
       return c.status(200).json({ status: "Success", data: Comments });
     } catch (error) {
       logger.error(error.message);
-      c.next(error);
+      return c.json({ status: "Error", message: error.message }, 500);
     }
   };
   
@@ -43,7 +43,7 @@ import {
       return c.status(200).json({ status: "Success", data: Comments });
     } catch (error) {
       logger.error(error.message);
-      c.next(error);
+      return c.json({ status: "Error", message: error.message }, 500);
     }
   };
   export const filterComments = async (c) => {
@@ -56,7 +56,7 @@ import {
       return c.status(200).json({ status: "Success", data: Comments });
     } catch (error) {
       logger.error(error.message);
-      c.next(error);
+      return c.json({ status: "Error", message: error.message }, 500);
     }
   };
   export const getPageComments = async (c) => {
@@ -67,7 +67,7 @@ import {
       return c.status(200).json({ status: "Success", data: Comments });
     } catch (error) {
       logger.error(error.message);
-      c.next(error);
+      return c.json({ status: "Error", message: error.message }, 500);
     }
   };
   
@@ -86,7 +86,7 @@ import {
       });
     } catch (error) {
       logger.error(error.message);
-      c.next(error);
+      return c.json({ status: "Error", message: error.message }, 500);
     }
   };
   
@@ -104,7 +104,7 @@ import {
       return c.status(200).json({ status: "Success", id: newComments.id });
     } catch (error) {
       logger.error(error.message);
-      c.next(error);
+      return c.json({ status: "Error", message: error.message }, 500);
     }
   };
   
@@ -118,7 +118,7 @@ import {
       return c.status(200).json({ status: "Success", id: deleteComments.id });
     } catch (error) {
       logger.error(error.message);
-      c.next(error);
+      return c.json({ status: "Error", message: error.message }, 500);
     }
   };
   

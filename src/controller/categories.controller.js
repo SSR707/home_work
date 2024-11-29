@@ -16,7 +16,7 @@ export const getAllCategories = async (c) => {
     const Categories = await getAllCategoriesService();
     return c.status(200).json({ status: "Success", data: Categories });
   } catch (error) {
-    c.next(error);
+    return c.json({ status: "Error", message: error.message }, 500);
   }
 };
 
@@ -29,7 +29,7 @@ export const getByIdCategories = async (c) => {
     return c.status(200).json({ status: "Success", data: Categories });
   } catch (error) {
     logger.error(error.message);
-    c.next(error);
+    return c.json({ status: "Error", message: error.message }, 500);
   }
 };
 
@@ -43,7 +43,7 @@ export const searchCategories = async (c) => {
     return c.status(200).json({ status: "Success", data: Categories });
   } catch (error) {
     logger.error(error.message);
-    c.next(error);
+    return c.json({ status: "Error", message: error.message }, 500);
   }
 };
 export const filterCategories = async (c) => {
@@ -56,7 +56,7 @@ export const filterCategories = async (c) => {
     return c.status(200).json({ status: "Success", data: Categories });
   } catch (error) {
     logger.error(error.message);
-    c.next(error);
+    return c.json({ status: "Error", message: error.message }, 500);
   }
 };
 export const getPageCategories = async (c) => {
@@ -67,7 +67,7 @@ export const getPageCategories = async (c) => {
     return c.status(200).json({ status: "Success", data: Categories });
   } catch (error) {
     logger.error(error.message);
-    c.next(error);
+    return c.json({ status: "Error", message: error.message }, 500);
   }
 };
 
@@ -85,7 +85,7 @@ export const createCategories = async (c) => {
     });
   } catch (error) {
     logger.error(error.message);
-    c.next(error);
+    return c.json({ status: "Error", message: error.message }, 500);
   }
 };
 
@@ -103,7 +103,7 @@ export const updateCategories = async (c) => {
     return c.status(200).json({ status: "Success", id: newCategories.id });
   } catch (error) {
     logger.error(error.message);
-    c.next(error);
+    return c.json({ status: "Error", message: error.message }, 500);
   }
 };
 
@@ -117,6 +117,6 @@ export const deleteCategories = async (c) => {
     return c.status(200).json({ status: "Success", id: deleteCategories.id });
   } catch (error) {
     logger.error(error.message);
-    c.next(error);
+    return c.json({ status: "Error", message: error.message }, 500);
   }
 };

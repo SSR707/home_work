@@ -11,7 +11,7 @@ export const roleGuard = (...roles) => {
       c.next();
     } catch (e) {
       logger.error(e)
-      c.next(e);
+      return c.json({ status: "Error", message: error.message }, 500);
     }
   };
 };
