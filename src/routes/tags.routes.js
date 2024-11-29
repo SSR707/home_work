@@ -19,4 +19,4 @@ tagsRouter.get("/",  getAllTags);
 tagsRouter.get("/:id",  getByIdTags);
 tagsRouter.post("/",  createTags);
 tagsRouter.put("/:id", roleGuard("admin"), updateTags);
-tagsRouter.delete("/:id", roleGuard("admin"), deleteTags);t
+tagsRouter.delete("/:id", roleGuard("admin"), deleteTags);

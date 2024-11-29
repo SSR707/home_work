@@ -19,4 +19,4 @@ posttagsRouter.get("/",  getAllPostTags);
 posttagsRouter.get("/:id",  getByIdPostTags);
 posttagsRouter.post("/",  createPostTags);
 posttagsRouter.put("/:id", roleGuard("admin"), updatePostTags);
-posttagsRouter.delete("/:id", roleGuard("admin"), deletePostTags);t
+posttagsRouter.delete("/:id", roleGuard("admin"), deletePostTags);
