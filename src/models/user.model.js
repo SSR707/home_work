@@ -18,6 +18,9 @@ const User = db.define('users', {
     email: {
         type: DataTypes.STRING,
     },
+    password: {
+        type: DataTypes.STRING,
+    },
 })
 
 User.hasMany(Post, { foreignKey: 'userId' })

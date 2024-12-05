@@ -6,16 +6,13 @@ import {
     refreshTokenSing,
     sendMail,
 } from '../utils/index.js'
-import {
-    createUserService,
-    updateUserService,
-} from '../service/users.service.js'
+import { createUserService, updateUserService } from '../services/index.js'
 import {
     createOtp,
     deleteOtpService,
     getOtpService,
     getUserByEmailService,
-} from '../service/auth.service.js'
+} from '../services/index.js'
 
 export const registerController = async (req, res, next) => {
     try {
