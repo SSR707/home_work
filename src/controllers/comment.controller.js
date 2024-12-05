@@ -1,4 +1,5 @@
 import { CommentService } from '../services/index.js'
+import { commentValidation } from '../validation/index.js'
 
 const responseHandler = (result, res) => {
     if (!result.success) {
@@ -10,7 +11,11 @@ const responseHandler = (result, res) => {
 export const CommentController = {
     create: async (req, res, next) => {
         try {
-            const data = req.validatedData
+            const { error } = commentValidation(req.body)
+            if (error) {
+                return res.status(400).send('Malumot Xato')
+            }
+            const data = req.body
             const result = await CommentService.create({
                 user_id: req.user.id,
                 ...data,
@@ -57,8 +62,12 @@ export const CommentController = {
     },
     update: async (req, res, next) => {
         try {
+            const { error } = commentValidation(req.body)
+            if (error) {
+                return res.status(400).send('Malumot Xato')
+            }
             const id = req.params.id
-            const data = req.validatedData
+            const data = req.body
             const result = await CommentService.update(id, data)
             responseHandler(result, res)
         } catch (error) {

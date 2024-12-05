@@ -1,6 +1,6 @@
 import Joi from 'joi'
 
-export const commentValidation = (data) => {
+export const postValidation = (data) => {
     const validation = Joi.object({
         user_id: Joi.number().required(),
         post_id: Joi.number().required(),
