@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Artist } from '../model/artists.model';
-import { TracksArtistDto, UpdateTracksDto } from './dto/update-tracks.dto';
+import {  UpdateTracksDto } from './dto/update-tracks.dto';
 import { ITracks } from 'src/interface/interface';
 import { Tracks } from 'src/model/tracks.model';
 
