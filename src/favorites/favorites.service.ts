@@ -12,16 +12,22 @@ export class FavoritesService {
     @InjectModel('favorites') private FavoritesModel: Model<Favorites>,
     @InjectModel('albums') private AlbumsModel: Model<Albums>,
     @InjectModel('artists') private artistModel: Model<Artist>,
-    @InjectModel('tracks') private tracksModel: Model<Tracks>
+    @InjectModel('tracks') private tracksModel: Model<Tracks>,
   ) {}
 
+  async getAllService(): Promise<Object> {
+    const data = await this.FavoritesModel.find();
+    return { status: HttpStatus.OK, data };
+  }
+
   async createServiceTrack(id: string): Promise<Object> {
-    const currentTrack= await this.tracksModel.findById(id);
+    const currentTrack = await this.tracksModel.findById(id);
     if (!currentTrack) {
       throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
     }
     const data: any = await this.FavoritesModel.find();
     data.tracks.push(currentTrack);
+    await data.save();
     return { status: HttpStatus.CREATED, message: 'Created' };
   }
 
@@ -43,6 +49,7 @@ export class FavoritesService {
     }
     const data: any = await this.FavoritesModel.find();
     data.albums.push(Albums);
+    await data.save();
     return { status: HttpStatus.CREATED, message: 'Created' };
   }
 
