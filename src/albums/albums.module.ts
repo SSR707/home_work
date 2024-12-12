@@ -5,11 +5,11 @@ import { AlbumsService } from './alibums.service';
 import { AlbumsController } from './albums.controller';
 
 @Module({
-    imports: [
-        MongooseModule.forFeature([{ name: 'albums', schema: AlbumsSchema }]),
-      ],
-      controllers: [AlbumsController],
-      providers: [AlbumsService],
-    exports:[AlbumsService]
+  imports: [
+    MongooseModule.forFeature([{ name: 'albums', schema: AlbumsSchema }]),
+  ],
+  controllers: [AlbumsController],
+  providers: [AlbumsService],
+  exports: [AlbumsService],
 })
 export class AlbumsModule {}

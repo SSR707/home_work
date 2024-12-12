@@ -24,7 +24,7 @@ export interface IUpdatePasswordDto {
   newPassword: string;
 }
 
-interface FavoritesResponse {
+export interface IFavoritesResponse {
   artists: Object[];
   albums:Object[];
   tracks: Object[];

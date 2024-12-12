@@ -6,7 +6,7 @@ export type FavoritesDocument = HydratedDocument<Favorites>;
 @Schema()
 export class Favorites {
   @Prop()
-  Favoritess: [];
+  artists: [];
 
   @Prop()
   albums: [];
