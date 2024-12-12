@@ -8,5 +8,7 @@ import { ArtistSchema } from 'src/model/artists.model';
     MongooseModule.forFeature([{ name: 'artists', schema: ArtistSchema }]),
   ],
   controllers: [ArtistsController],
-  providers: [ArtistService],})
+  providers: [ArtistService],
+  exports:[ArtistService]
+})
 export class ArtistModule {}

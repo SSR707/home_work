@@ -23,3 +23,9 @@ export interface IUpdatePasswordDto {
   oldPassword: string;
   newPassword: string;
 }
+
+interface FavoritesResponse {
+  artists: Object[];
+  albums:Object[];
+  tracks: Object[];
+}

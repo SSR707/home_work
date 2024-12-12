@@ -10,5 +10,6 @@ import { AlbumsController } from './albums.controller';
       ],
       controllers: [AlbumsController],
       providers: [AlbumsService],
+    exports:[AlbumsService]
 })
 export class AlbumsModule {}
