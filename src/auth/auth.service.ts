@@ -19,7 +19,7 @@ export class AuthService {
     if (currentUser) {
       throw new HttpException('bu email bazada mavjud', HttpStatus.NOT_FOUND);
     }
-    const hashPass = await await this.authRepository(data)
+    const hashPass = await this.authRepository.hashPass(data);
     data.password = hashPass;
     const newUser = new this.userModel(data);
     await newUser.save();
@@ -27,6 +27,7 @@ export class AuthService {
   }
 
   async loginService(data: UpdateUserDto): Promise<Object> {
+    
     const currentUser = await this.userModel.findOne({ email: data.email });
     if (!currentUser) {
       throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
@@ -37,7 +38,8 @@ export class AuthService {
     }
     const payload = { id: currentUser.id, sub: currentUser.email };
     const accessToken = await this.authRepository.generateAccessToken(payload);
-    const refreshToken = await this.authRepository.generateRefreshToken(payload);
+    const refreshToken =
+      await this.authRepository.generateRefreshToken(payload);
     return { refreshToken, accessToken };
   }
 
@@ -53,7 +55,7 @@ export class AuthService {
     if (!isEqual) {
       throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);
     }
-    const hashPass = await this.authRepository(data)
+    const hashPass = await this.authRepository.hashPass(data);
     const user = await this.userModel.findByIdAndUpdate(id, {
       password: hashPass,
     });
