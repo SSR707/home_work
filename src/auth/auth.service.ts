@@ -12,15 +12,14 @@ import { IUpdatePasswordDto } from 'src/interface/interface';
 export class AuthService {
   constructor(
     @InjectModel('users') private userModel: Model<Users>,
-    @Inject('AUTH_REPOSITORY') private readonly jwtRepository: any,
+    @Inject('AUTH_REPOSITORY') private readonly authRepository: any,
   ) {}
   async registerService(data: CreateUserDto): Promise<Object> {
     const currentUser = await this.userModel.findOne({ email: data.email });
     if (currentUser) {
       throw new HttpException('bu email bazada mavjud', HttpStatus.NOT_FOUND);
     }
-    const salt = await bcrypt.genSalt(10);
-    const hashPass = await bcrypt.hash(data.password, salt);
+    const hashPass = await await this.authRepository(data)
     data.password = hashPass;
     const newUser = new this.userModel(data);
     await newUser.save();
@@ -37,8 +36,8 @@ export class AuthService {
       throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);
     }
     const payload = { id: currentUser.id, sub: currentUser.email };
-    const accessToken = await this.jwtRepository.generateAccessToken(payload);
-    const refreshToken = await this.jwtRepository.generateRefreshToken(payload);
+    const accessToken = await this.authRepository.generateAccessToken(payload);
+    const refreshToken = await this.authRepository.generateRefreshToken(payload);
     return { refreshToken, accessToken };
   }
 
@@ -54,8 +53,7 @@ export class AuthService {
     if (!isEqual) {
       throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);
     }
-    const salt = await bcrypt.genSalt(10);
-    const hashPass = await bcrypt.hash(data.newPassword, salt);
+    const hashPass = await this.authRepository(data)
     const user = await this.userModel.findByIdAndUpdate(id, {
       password: hashPass,
     });

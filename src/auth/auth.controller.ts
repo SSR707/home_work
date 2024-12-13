@@ -1,4 +1,4 @@
-import { Body, Post, Controller, HttpException } from '@nestjs/common';
+import { Body, Post, Controller, HttpException, UsePipes, ValidationPipe } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-auth.dto';
 import { AuthService } from './auth.service';
 import { UpdateUserDto } from './dto/update-auth.dto';
@@ -20,7 +20,6 @@ export class AuthController {
       }
     }
   }
-
   @Post('login')
   async login(@Body() userData: UpdateUserDto) {
     try {

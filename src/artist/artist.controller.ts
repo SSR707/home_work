@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { UpdateArtistDto } from './dto/update-artist.dto';
 import { ArtistService } from './artist.service';
-import { IArtist } from 'src/interface/interface';
+import { CreateArtistDto } from './dto/create-artist.dto';
 
 @Controller('artists')
 export class ArtistsController {
@@ -47,7 +47,7 @@ export class ArtistsController {
   }
 
   @Post()
-  create(@Body() data: IArtist) {
+  create(@Body() data: CreateArtistDto) {
     try {
       const newartist = this.artistServirce.createService(data);
       return newartist;

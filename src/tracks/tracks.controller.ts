@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { UpdateTracksDto } from './dto/update-tracks.dto';
 import { TracksService } from './tracks.service';
-import { ITracks } from 'src/interface/interface';
+import { CreateTracksDto } from './dto/create-tracks.dto';
 
 @Controller('tracks')
 export class TracksController {
@@ -47,7 +47,7 @@ export class TracksController {
   }
 
   @Post()
-  create(@Body() data: ITracks) {
+  create(@Body() data: CreateTracksDto) {
     try {
       const newtracks = this.tracksServirce.createService(data);
       return newtracks;

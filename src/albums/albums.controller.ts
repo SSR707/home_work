@@ -11,6 +11,7 @@ import {
   import { UpdateAlbumstDto } from './dto/update-albums.dto';
   import { AlbumsService } from './alibums.service';
   import { IAlbums, IArtist } from 'src/interface/interface';
+import { CreateAlbumsDto } from './dto/create-albums.dto';
   
   @Controller('albums')
   export class AlbumsController {
@@ -47,7 +48,7 @@ import {
     }
   
     @Post()
-    create(@Body() data: IAlbums) {
+    create(@Body() data: CreateAlbumsDto) {
       try {
         const newalbums = this.albumsServirce.createService(data);
         return newalbums;
