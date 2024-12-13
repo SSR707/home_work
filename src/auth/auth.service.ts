@@ -1,4 +1,4 @@
-import { HttpException, Injectable } from '@nestjs/common';
+import { HttpException, Inject, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Users } from '../model/user.model';
@@ -10,18 +10,21 @@ import { IUpdatePasswordDto } from 'src/interface/interface';
 
 @Injectable()
 export class AuthService {
-  constructor(@InjectModel('users') private userModel: Model<Users>) {}
+  constructor(
+    @InjectModel('users') private userModel: Model<Users>,
+    @Inject('AUTH_REPOSITORY') private readonly jwtRepository: any,
+  ) {}
   async registerService(data: CreateUserDto): Promise<Object> {
     const currentUser = await this.userModel.findOne({ email: data.email });
     if (currentUser) {
-      throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
+      throw new HttpException('bu email bazada mavjud', HttpStatus.NOT_FOUND);
     }
     const salt = await bcrypt.genSalt(10);
     const hashPass = await bcrypt.hash(data.password, salt);
     data.password = hashPass;
     const newUser = new this.userModel(data);
     await newUser.save();
-    return { status: HttpStatus.CREATED, message:'Created' };
+    return { status: HttpStatus.CREATED, message: 'Created' };
   }
 
   async loginService(data: UpdateUserDto): Promise<Object> {
@@ -29,11 +32,14 @@ export class AuthService {
     if (!currentUser) {
       throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
     }
-    const isEqual = await bcrypt.compare(data.password, currentUser.password);  
+    const isEqual = await bcrypt.compare(data.password, currentUser.password);
     if (!isEqual) {
       throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);
     }
-    return              
+    const payload = { id: currentUser.id, sub: currentUser.email };
+    const accessToken = await this.jwtRepository.generateAccessToken(payload);
+    const refreshToken = await this.jwtRepository.generateRefreshToken(payload);
+    return { refreshToken, accessToken };
   }
 
   async updatePass(id: string, data: IUpdatePasswordDto): Promise<Object> {
@@ -53,6 +59,6 @@ export class AuthService {
     const user = await this.userModel.findByIdAndUpdate(id, {
       password: hashPass,
     });
-    return { status: HttpStatus.OK, message:'Success' };
+    return { status: HttpStatus.OK, message: 'Success' };
   }
 }

@@ -28,4 +28,5 @@ export interface IFavoritesResponse {
   artists: Object[];
   albums:Object[];
   tracks: Object[];
+  user_id:string
 }

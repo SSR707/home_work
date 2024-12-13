@@ -7,6 +7,8 @@ import {
   Delete,
   Param,
   HttpException,
+  ExecutionContext,
+  Req,
 } from '@nestjs/common';
 import { UserService } from './users.service';
 import { UpdateUserDto } from './dto/update-auth.dto';
@@ -14,6 +16,22 @@ import { UpdateUserDto } from './dto/update-auth.dto';
 @Controller('users')
 export class UsersController {
   constructor(private readonly userServirce: UserService) {}
+
+  @Get('profile')
+  getProfile(@Req() req: Request) {
+    try {
+      const data = this.userServirce.getProfileService(req['user']);
+      return data;
+    } catch (error) {
+      if (error instanceof HttpException) {
+        return {
+          status: error.getStatus(),
+          message: error.getResponse(),
+        };
+      }
+      console.log(error);
+    }
+  }
 
   @Get()
   getAll() {

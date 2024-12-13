@@ -10,7 +10,7 @@ export class AuthController {
   async register(@Body() userData: CreateUserDto) {
     try {
       const data = await this.authService.registerService(userData);
-      return data
+      return data;
     } catch (error) {
       if (error instanceof HttpException) {
         return {
@@ -38,10 +38,10 @@ export class AuthController {
 
   @Post('UpdatePasswordDto')
   async updatePass(@Body() userData: UpdateUserDto) {
-    try{
+    try {
       const data = await this.authService.loginService(userData);
       return data;
-    }catch (error) {
+    } catch (error) {
       if (error instanceof HttpException) {
         return {
           status: error.getStatus(),
