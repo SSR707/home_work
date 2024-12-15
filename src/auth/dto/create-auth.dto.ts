@@ -1,9 +1,12 @@
 import {
   IsEmail,
+  IsEnum,
   IsNotEmpty,
+  IsOptional,
   IsString,
   IsStrongPassword,
 } from 'class-validator';
+import { Role } from 'src/interface/interface';
 
 export class CreateAuthDto {
   @IsString()
@@ -22,4 +25,9 @@ export class CreateAuthDto {
   @IsStrongPassword()
   @IsNotEmpty()
   password: string;
+
+  @IsString()
+  @IsEnum(Role)
+  @IsOptional()
+  role: Role;
 }

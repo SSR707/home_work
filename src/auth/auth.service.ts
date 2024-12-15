@@ -22,7 +22,7 @@ export class AuthService {
         ErrorException.CONFLICT().statusCode,
       );
     }
-    data.password = await this.authRepository.hashPass(data);
+    data.password = await this.authRepository.hashPass(data.password);
     const user = new this.userModel(data);
     await user.save();
     return {
@@ -46,7 +46,7 @@ export class AuthService {
         ErrorException.UNAUHTORIZED().statusCode,
       );
     }
-    const payload = { id: currentUser.id, sub: currentUser.email };
+    const payload = { id: currentUser.id, sub: currentUser.email, role: currentUser.role };
     const accessToken = await this.authRepository.accessToken(payload);
     const refreshToken = await this.authRepository.refreshToken(payload);
     return { accessToken, refreshToken };

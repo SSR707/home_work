@@ -7,3 +7,9 @@ export interface user_payload {
   id: string;
   sub: string;
 }
+
+export enum Role {
+  USER ='User',
+  ADMIN = 'Admin',
+  SuperAdmin = 'superAdmin'
+}

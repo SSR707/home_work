@@ -8,6 +8,11 @@ import { ErrorException } from '../auth/entities/error.excaption';
 @Injectable()
 export class UsersService {
   constructor(@InjectModel('users') private userModel: Model<User>) {}
+
+  async findProfile(id:string){
+    const user = await this.userModel.findOne({_id:id})
+    return user
+  }
   async findAll() {
     const user_data = await this.userModel.find();
     if (!user_data) {

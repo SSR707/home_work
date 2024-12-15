@@ -4,7 +4,7 @@ import mongoose, { HydratedDocument } from 'mongoose';
 export type PostsDocument = HydratedDocument<Posts>;
 
 export class Posts {
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'users', required: true })
+  @Prop({required:true})
   user_id: string;
 
   @Prop({ required: true })

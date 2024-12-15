@@ -19,9 +19,9 @@ export class AuthRepository {
     });
   }
 
-  async hashPass(data) {
+  async hashPass(password) {
     const salt = await bcrypt.genSalt(10);
-    const pass = await bcrypt.hash(data.password, salt);
+    const pass = await bcrypt.hash(password, salt);
     return pass;
   }
 }

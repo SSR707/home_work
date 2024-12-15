@@ -9,8 +9,8 @@ import { ErrorException } from 'src/auth/entities/error.excaption';
 @Injectable()
 export class CommentsService {
   constructor(@InjectModel('comments') private commentModel: Model<Comments>) {}
-  async create(createCommentDto: CreateCommentDto) {
-    const new_comment = new this.commentModel(createCommentDto);
+  async create(createCommentDto: CreateCommentDto , id:string) {
+    const new_comment = new this.commentModel({user_id: id ,...createCommentDto});
     await new_comment.save();
     return {
       status: ErrorException.CREATED().statusCode,
