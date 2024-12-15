@@ -64,7 +64,7 @@ export class PostsService {
       id,
     };
   }
-
+  
   async remove(id: string) {
     const currentUser = await this.postsModel.findOne({ _id: id });
     if (!currentUser) {

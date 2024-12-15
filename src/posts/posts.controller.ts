@@ -12,6 +12,8 @@ import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { Request } from 'express';
+import { Roles } from 'src/decorator/roles.decorator';
+import { Role } from 'src/interface/interface';
 
 @Controller('posts')
 export class PostsController {
@@ -33,11 +35,13 @@ export class PostsController {
   }
 
   @Patch(':id')
+  @Roles(Role.ADMIN, Role.SuperAdmin)
   update(@Param('id') id: string, @Body() updatePostDto: UpdatePostDto) {
     return this.postsService.update(id, updatePostDto);
   }
 
   @Delete(':id')
+  @Roles(Role.ADMIN, Role.SuperAdmin)
   remove(@Param('id') id: string) {
     return this.postsService.remove(id);
   }

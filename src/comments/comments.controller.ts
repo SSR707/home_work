@@ -12,6 +12,8 @@ import { CommentsService } from './comments.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { UpdateCommentDto } from './dto/update-comment.dto';
 import { Request } from 'express';
+import { Roles } from 'src/decorator/roles.decorator';
+import { Role } from 'src/interface/interface';
 
 @Controller('comments')
 export class CommentsController {
@@ -33,11 +35,13 @@ export class CommentsController {
   }
 
   @Patch(':id')
+  @Roles(Role.ADMIN, Role.SuperAdmin)
   update(@Param('id') id: string, @Body() updateCommentDto: UpdateCommentDto) {
     return this.commentsService.update(id, updateCommentDto);
   }
 
   @Delete(':id')
+  @Roles(Role.ADMIN, Role.SuperAdmin)
   remove(@Param('id') id: string) {
     return this.commentsService.remove(id);
   }
