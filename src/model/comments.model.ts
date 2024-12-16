@@ -3,6 +3,7 @@ import mongoose, { HydratedDocument } from 'mongoose';
 
 export type CommentsDocument = HydratedDocument<Comments>;
 
+@Schema()
 export class Comments {
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'users', required: true })
   user_id: string;

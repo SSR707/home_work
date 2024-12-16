@@ -3,6 +3,7 @@ import mongoose, { HydratedDocument } from 'mongoose';
 
 export type PostsDocument = HydratedDocument<Posts>;
 
+@Schema()
 export class Posts {
   @Prop({required:true})
   user_id: string;
