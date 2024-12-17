@@ -19,15 +19,13 @@ export class AuthGuard implements CanActivate {
       'isPublic',
       context.getHandler(),
     );
-    if(isPublic){
-      return true
+    if (isPublic) {
+      return true;
     }
     const request = context.switchToHttp().getRequest();
     const token = this.extractTokenFromHeader(request);
     if (!token) {
-      throw new HttpException(
-        'UNAUTHORIZED' , HttpStatus.UNAUTHORIZED
-      );
+      throw new HttpException('UNAUTHORIZED', HttpStatus.UNAUTHORIZED);
     }
     try {
       const payload = await this.jwtService.verify(token, {
@@ -35,9 +33,7 @@ export class AuthGuard implements CanActivate {
       });
       request['user'] = payload;
     } catch (error) {
-      throw new HttpException(
-        'UNAUTHORIZED' , HttpStatus.UNAUTHORIZED
-      );
+      throw new HttpException('UNAUTHORIZED', HttpStatus.UNAUTHORIZED);
     }
     return true;
   }

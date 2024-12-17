@@ -3,13 +3,13 @@ import { CreateAuthDto } from './dto/create-auth.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
 import { MailerModule } from '../email/sendMail';
 import * as bcrypt from 'bcrypt';
-
 import { generateOtp } from 'src/common/otp/otp-generate';
+import { AuthRepository } from './repository/auth.repository';
 
 @Injectable()
 export class AuthService {
   constructor(
-    @Inject('AUTH_REPO') private readonly authRepository: any,
+    @Inject('AUTH_REPO') private readonly authRepository: AuthRepository,
     private readonly milerModeule: MailerModule,
   ) {}
   async register(createAuthDto: CreateAuthDto) {
@@ -64,7 +64,7 @@ export class AuthService {
     if (new Date() > currentOtp.expire_at) {
       throw new HttpException('CONFLICT', HttpStatus.CONFLICT);
     }
-    await this.authRepository.updateUser();
-    return { status: 200, message: 'User Is Actived' };
+    // await this.authRepository.updateUser();
+    // return { status: 200, message: 'User Is Actived' };
   }
 }

@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateAuthDto } from './dto/create-auth.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
@@ -21,7 +29,7 @@ export class AuthController {
 
   @Public()
   @Post()
-  verifyToken(@Body() data: any){
+  verifyToken(@Body() data: any) {
     return this.authService.varifyOtp(data);
   }
 }

@@ -4,11 +4,9 @@ import { JwtService } from '@nestjs/jwt';
 import { user_payload } from 'src/interface/interface';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { User } from 'src/user/entities/user.entity';
+import { User } from '../../user/entities/user.entity';
 import { CreateAuthDto } from '../dto/create-auth.dto';
-import { agent } from 'supertest';
 import { Otp } from 'src/model/otp';
-import { isAwaitExpression } from 'typescript';
 @Injectable()
 export class AuthRepository {
   constructor(
@@ -62,7 +60,7 @@ export class AuthRepository {
     return id;
   }
   async insertOtp(id: number, otp: string) {
-    await this.userRepository.query(
+    await this.otprRepository.query(
       `
         INSERT INTO otp (user_id , otp , expire_at )
         VALUES ($1 ,$2 , $3);`,
@@ -75,6 +73,6 @@ export class AuthRepository {
       `SELECT * FROM otp WHERE user_id = $1`,
       [id],
     );
-    return otp
+    return otp;
   }
 }
