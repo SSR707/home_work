@@ -4,9 +4,9 @@ function LogParameter(target: any, propertyKey: string, parameterIndex: number) 
   
   class Example4 {
     greet(@LogParameter message: string) {
-      console.log(`Message: ${message}`);
+      console.log(message);
     }
   }
   
-  new Example4().greet("Hello!");
+  new Example4().greet("Salom");
   
