@@ -1,4 +1,6 @@
 import { TypeOrmModuleOptions } from "@nestjs/typeorm";
+import { Otp } from "src/model/otp";
+import { User } from "src/user/entities/user.entity";
 
 export class dbConnection {
   static connect():TypeOrmModuleOptions {
@@ -9,7 +11,7 @@ export class dbConnection {
       username: process.env.PG_USER,
       password: process.env.PG_PASSWORD,
       database: process.env.PG_DATABASE,
-      entities: [User],
+      entities: [User, Otp],
       synchronize: true, 
     };
   }
