@@ -28,7 +28,7 @@ export class UserController {
   }
 
   @Patch(':id')
-  @Roles(Role.SupperAdmin ,Role.Admin)
+  @Roles(Role.SupperAdmin, Role.Admin)
   update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateUserDto: UpdateUserDto,

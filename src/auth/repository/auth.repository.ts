@@ -5,7 +5,7 @@ import { CreateUserDto } from 'src/user/dto/create-user.dto';
 import { user_payload, verifytoken } from 'src/interface/interface';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
-import { generateOtp } from 'src/common/otp/otp-generate';
+import { generateOTP } from 'src/common/otp/otp-generate';
 import { Otp } from 'src/model/otp.model';
 import { loginUserDto } from '../dto/login-auth.dto';
 import { UserRepository } from 'src/user/repository/user.repository';
@@ -22,20 +22,22 @@ export class AuthRepository {
   ) {}
   async register(CreateAuthDto: CreateUserDto) {
     const currentUser = await this.userModel.findOne({
-      where: { eamil: CreateAuthDto.email },
+      where: { email: CreateAuthDto.email },
     });
     if (currentUser) {
       throw new HttpException('CONFLICT', HttpStatus.CONFLICT);
     }
     CreateAuthDto.password = await this.hashPass(CreateAuthDto.password);
-    const otp = generateOtp();
-    sendMail(this.milerModeule ,CreateAuthDto.email, 'Otp', `${otp}`);
+    const otp = generateOTP();
+    await sendMail(this.milerModeule, CreateAuthDto.email, 'Otp', `${otp}`);
+    console.log(CreateAuthDto);
     const user = await this.userModel.create(
       { ...CreateAuthDto },
       {
         returning: true,
       },
     );
+
     await this.otpModel.create({
       user_id: user.id,
       otp: otp,
@@ -71,6 +73,7 @@ export class AuthRepository {
   }
 
   async verifytoken(data: verifytoken) {
+    console.log(data);
     const currentUser = await this.userModel.findOne({
       where: { email: data.email },
     });
@@ -89,10 +92,13 @@ export class AuthRepository {
     if (new Date() > currentOtp.expire_in) {
       throw new HttpException('Otp Time Out', HttpStatus.CONFLICT);
     }
-    await this.userModel.update({s_Active:true}, {
-      where: { id:currentUser.id },
-      returning: true,
-    });
+    await this.userModel.update(
+      { s_Active: true },
+      {
+        where: { id: currentUser.id },
+        returning: true,
+      },
+    );
     return { status: 200, message: 'User Is Activete' };
   }
   async accessToken(payload: user_payload): Promise<string> {

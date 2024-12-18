@@ -44,7 +44,10 @@ export class User extends Model {
   })
   password: string;
 
-  @Column({ type: DataType.ENUM(...Object.values(Role)), allowNull: false })
+  @Column({
+    type: DataType.ENUM(...Object.values(Role)),
+    defaultValue: Role.User,
+  })
   role: Role;
 
   @Column({
@@ -52,6 +55,4 @@ export class User extends Model {
     defaultValue: true,
   })
   is_Active: boolean;
-
-  
 }

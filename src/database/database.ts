@@ -11,7 +11,7 @@ export class Sequelize {
       username: process.env.PG_USER,
       password: process.env.PG_PASSWORD,
       database: process.env.PG_DATABASE,
-      models: [User ,Otp],
+      models: [User, Otp],
       autoLoadModels: true,
       logging: false,
       synchronize: true,

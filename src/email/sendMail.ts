@@ -14,6 +14,9 @@ export async function sendMail(
       text,
     });
   } catch (error) {
-    throw new HttpException('Failed to send email', HttpStatus.INTERNAL_SERVER_ERROR);
+    throw new HttpException(
+      'Failed to send email',
+      HttpStatus.INTERNAL_SERVER_ERROR,
+    );
   }
 }

@@ -16,7 +16,7 @@ export class AuthService {
     return this.authReposiyory.login(loginAuthDto);
   }
 
-  VerifyToken(otpData:verifytoken) {
+  VerifyToken(otpData: verifytoken) {
     return this.authReposiyory.verifytoken(otpData);
   }
 }

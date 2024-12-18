@@ -15,6 +15,6 @@ import { SequelizeModule } from '@nestjs/sequelize';
       useClass: UserRepository,
     },
   ],
-  exports:[]
+  exports: [],
 })
 export class UserModule {}
