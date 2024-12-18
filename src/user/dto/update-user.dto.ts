@@ -16,6 +16,9 @@ import { Role } from 'src/interface/interface';
 export class UpdateUserDto extends PartialType(CreateUserDto) {
   @IsString()
   @IsOptional()
+  img?: string;
+  @IsString()
+  @IsOptional()
   first_name: string;
   @IsString()
   @IsOptional()

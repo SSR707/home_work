@@ -12,6 +12,9 @@ import {
 import { Role } from 'src/interface/interface';
 export class CreateUserDto {
   @IsString()
+  @IsOptional()
+  img:string
+  @IsString()
   @IsNotEmpty()
   first_name: string;
   @IsString()

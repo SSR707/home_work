@@ -9,8 +9,11 @@ export class UserService {
   constructor(
     @Inject('USER_REPOSITORIY') private readonly userRepository: any,
   ) {}
-  findAll() {
-    return this.userRepository.findAll();
+  Profile(id:number) {
+    return this.userRepository.Profile(id);
+  }
+  findAll(page:number , limit:number) {
+    return this.userRepository.findAll(page , limit);
   }
 
   findOne(id: number) {
@@ -23,5 +26,9 @@ export class UserService {
 
   remove(id: number) {
     return this.userRepository.delete(id);
+  }
+
+  uploadPicture(id:number ,file:any) {
+    return this.userRepository.uploadPicture(id ,file);
   }
 }

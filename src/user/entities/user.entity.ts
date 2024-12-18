@@ -20,6 +20,11 @@ export class User extends Model {
   id: number;
 
   @Column({
+    type: DataType.STRING
+  })
+  img: string;
+
+  @Column({
     type: DataType.STRING,
     allowNull: false,
   })
@@ -52,7 +57,7 @@ export class User extends Model {
 
   @Column({
     type: DataType.BOOLEAN,
-    defaultValue: true,
+    defaultValue: false,
   })
   is_Active: boolean;
 }

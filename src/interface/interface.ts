@@ -14,3 +14,8 @@ export interface verifytoken {
   email: string;
   otp: string;
 }
+
+export interface forgetPass {
+  oldPassword: string;
+  newPassword: string;
+}
