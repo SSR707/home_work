@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   Req,
+  HttpStatus,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from 'src/user/dto/create-user.dto';
@@ -31,6 +32,12 @@ export class AuthController {
     return this.authService.login(updateAuthDto);
   }
 
+  @Post('signOut')
+  signout(@Req() req: Request) {
+    req['user'] = null;
+    return { status: HttpStatus.OK, message: 'SingOut' };
+  }
+
   @Public()
   @Post('verifyToken')
   verifyToken(@Body() otpData: verifytoken) {
@@ -38,7 +45,7 @@ export class AuthController {
   }
 
   @Post('forgetPassword')
-  forgetPassword(@Body() forgetPass: forgetPass , @Req() req: Request) {
-    return this.authService.forgetPassword(req['user'].id , forgetPass);
+  forgetPassword(@Body() forgetPass: forgetPass, @Req() req: Request) {
+    return this.authService.forgetPassword(req['user'].id, forgetPass);
   }
 }
