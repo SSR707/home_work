@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { User } from 'src/user/entities/user.entity';
 import { CreateUserDto } from 'src/user/dto/create-user.dto';
-import { user_payload, verifytoken } from 'src/interface/interface';
+import { forgetPass, user_payload, verifytoken } from 'src/interface/interface';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { generateOTP } from 'src/common/otp/otp-generate';
@@ -73,7 +73,7 @@ export class AuthRepository {
   }
 
   async verifytoken(data: verifytoken) {
-    console.log(data);
+    console.log(data)
     const currentUser = await this.userModel.findOne({
       where: { email: data.email },
     });
@@ -93,13 +93,24 @@ export class AuthRepository {
       throw new HttpException('Otp Time Out', HttpStatus.CONFLICT);
     }
     await this.userModel.update(
-      { s_Active: true },
+      { is_Active: true },
       {
         where: { id: currentUser.id },
         returning: true,
       },
     );
     return { status: 200, message: 'User Is Activete' };
+  }
+
+  async ForgetPassword(id: number, data: forgetPass) {
+    const user = await this.userModel.findByPk(id);
+    const isEqual = await bcrypt.compare(data.oldPassword, user.password);
+    if (!isEqual) {
+      throw new HttpException('Eski Parol Hato', HttpStatus.UNAUTHORIZED);
+    }
+    const hashPass = await this.hashPass(data.newPassword);
+    await this.userModel.update({ password: hashPass }, { where: { id } });
+    return { status: HttpStatus.OK, message: 'Password updated' };
   }
   async accessToken(payload: user_payload): Promise<string> {
     return this.jwtService.sign(payload, {

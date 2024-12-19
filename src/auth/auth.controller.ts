@@ -6,12 +6,14 @@ import {
   Patch,
   Param,
   Delete,
+  Req,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from 'src/user/dto/create-user.dto';
 import { loginUserDto } from './dto/login-auth.dto';
 import { Public } from 'src/decorator/decorators';
-import { verifytoken } from 'src/interface/interface';
+import { forgetPass, verifytoken } from 'src/interface/interface';
+import { Request } from 'express';
 
 @Controller('auth')
 export class AuthController {
@@ -33,5 +35,10 @@ export class AuthController {
   @Post('verifyToken')
   verifyToken(@Body() otpData: verifytoken) {
     return this.authService.VerifyToken(otpData);
+  }
+
+  @Post('forgetPassword')
+  forgetPassword(@Body() forgetPass: forgetPass , @Req() req: Request) {
+    return this.authService.forgetPassword(req['user'].id , forgetPass);
   }
 }
