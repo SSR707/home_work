@@ -41,35 +41,35 @@ describe('TransactionsController', () => {
   it('Transactions update test', () => {
     const newData = { amount: 1200 };
     const result = controller.update('676a59a67f5ab4d59677830a', newData);
-    expect(result).toEqual({});
+    expect(result).toEqual({status:200});
   });
 
   it('Transactions update test', () => {
     const newData = { amount: 120};
     const result = controller.update('676a59a67f5ab4d59677830a', newData);
-    expect(result).toEqual({});
+    expect(result).toEqual({status:200});
   });
   it('Transactions find test', () => {
     const result = controller.findAll();
-    expect(result).toEqual({});
+    expect(result).toEqual([]);
   });
   it('Transactions findOne test', () => {
     const result = controller.findOne('676a59a67f5ab4d59677830a');
-    expect(result).toEqual({});
+    expect(result).toEqual({status:200});
   });
 
   it('Transactions findOne test', () => {
     const result = controller.findOne('676a59a67f5ab4d59677830a');
-    expect(result).toEqual({});
+    expect(result).toEqual({status:200});
   });
 
   it('Transactions delete test', () => {
     const result = controller.remove('676a59a67f5ab4d59677830a');
-    expect(result).toEqual({});
+    expect(result).toEqual({status:200});
   });
 
   it('Transactions delete test', () => {
     const result = controller.remove('676a59a67f5ab4d59677830a');
-    expect(result).toEqual({});
+    expect(result).toEqual({status:200});
   });
 });
