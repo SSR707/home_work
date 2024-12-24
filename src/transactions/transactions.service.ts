@@ -20,7 +20,7 @@ export class TransactionsService {
     return this.transactionsModel.find();
   }
 
-  async findOne(id: number) {
+  async findOne(id: string) {
     const currentUser = await this.transactionsModel.findOne({
       where: { _id: id },
     });
@@ -30,7 +30,7 @@ export class TransactionsService {
     return currentUser;
   }
 
-  async update(id: number, updateTransactionDto: UpdateTransactionDto) {
+  async update(id: string, updateTransactionDto: UpdateTransactionDto) {
     const currentUser = await this.transactionsModel.findOne({
       where: { _id: id },
     });
@@ -42,7 +42,7 @@ export class TransactionsService {
     return {status:200, id:id};
   }
 
-  async remove(id: number) {
+  async remove(id: string) {
     const currentUser = await this.transactionsModel.findOne({
       where: { _id: id },
     });
