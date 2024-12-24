@@ -22,7 +22,7 @@ export class TransactionsService {
 
   async findOne(id: string) {
     const currentUser = await this.transactionsModel.findOne({
-      where: { _id: id },
+      _id: id ,
     });
     if (!currentUser) {
       throw new HttpException('NOT FOUND', HttpStatus.NOT_FOUND);
@@ -32,7 +32,7 @@ export class TransactionsService {
 
   async update(id: string, updateTransactionDto: UpdateTransactionDto) {
     const currentUser = await this.transactionsModel.findOne({
-      where: { _id: id },
+      _id: id ,
     });
     if (!currentUser) {
       throw new HttpException('NOT FOUND', HttpStatus.NOT_FOUND);
@@ -44,7 +44,7 @@ export class TransactionsService {
 
   async remove(id: string) {
     const currentUser = await this.transactionsModel.findOne({
-      where: { _id: id },
+      _id: id ,
     });
     if (!currentUser) {
       throw new HttpException('NOT FOUND', HttpStatus.NOT_FOUND);

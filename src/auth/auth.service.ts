@@ -9,9 +9,7 @@ import { loginUserDto } from './dto/create-auth.dto';
 export class AuthService {
   constructor(@InjectModel('users') private userModel: Model<User>) {}
   async register(createAuthDto: CreateUserDto) {
-    const current = await this.userModel.findOne({
-      where: { email: createAuthDto.email },
-    });
+    const current = await this.userModel.findOne({ email: createAuthDto.email });
     if (current) {
       throw new HttpException('CONFLICT', HttpStatus.CONFLICT);
     }
@@ -21,9 +19,7 @@ export class AuthService {
   }
 
   async login(loginAuthDto: loginUserDto) {
-    const user = await this.userModel.findOne({
-      where: { email: loginAuthDto.email },
-    });
+    const user = await this.userModel.findOne({ email:loginAuthDto.email });
     if (!user) {
       throw new HttpException('NOT FOUND', HttpStatus.NOT_FOUND);
     }

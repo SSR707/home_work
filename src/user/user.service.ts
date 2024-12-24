@@ -14,7 +14,7 @@ export class UserService {
   }
 
   async findOne(id: string) {
-    const user = await this.userModel.findOne({ where: { _id: id } });
+    const user = await this.userModel.findOne({ _id: id });
     if (!user) {
       throw new HttpException('NOT FOUND', HttpStatus.NOT_FOUND);
     }
@@ -22,7 +22,7 @@ export class UserService {
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
-    const curretUser = await this.userModel.findOne({ where: { _id: id } });
+    const curretUser = await this.userModel.findOne({ _id: id });
     if (!curretUser) {
       throw new HttpException('NOT FOUND', HttpStatus.NOT_FOUND);
     }
@@ -32,7 +32,7 @@ export class UserService {
   }
 
   async remove(id: string) {
-    const curretUser = await this.userModel.findOne({ where: { _id: id } });
+    const curretUser = await this.userModel.findOne({ _id: id });
     if (!curretUser) {
       throw new HttpException('NOT FOUND', HttpStatus.NOT_FOUND);
     }
