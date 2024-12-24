@@ -20,21 +20,41 @@ describe('UserController', () => {
 
   it('Controller Tset Update', () => {
     const newData = {
-      fullname:'Ali'
-    }
-    const result = controller.update('qweqweqw' ,newData)
-    expect(result).toEqual({status:200 , id:'sdfghj'});
+      fullname: 'Ali',
+    };
+    const result = controller.update('qweqweqw', newData);
+    expect(result).toEqual({ status: 200, id: 'sdfghj' });
   });
 
   it('Controller Tset Update', () => {
     const newData = {
-      email:'ali@gmail.com'
-    }
-    const result = controller.update('qweqweqw' ,newData)
-    expect(result).toEqual({status:200 , id:'sdfghj'});
+      email: 'ali@gmail.com',
+    };
+    const result = controller.update('qweqweqw', newData);
+    expect(result).toEqual({ status: 200, id: 'sdfghj' });
   });
   it('Controller Tset FindAll', () => {
-    const result = controller.findAll()
+    const result = controller.findAll();
     expect(result).toEqual([]);
+  });
+
+  it('Controller Tset FindAll', () => {
+    const result = controller.findAll();
+    expect(result).toEqual([]);
+  });
+
+  it('Controller Tset FindOne', () => {
+    const result = controller.findOne('dsfjkdasfhk');
+    expect(result).toEqual({});
+  });
+
+  it('Controller Tset FindOne', () => {
+    const result = controller.findOne('dsfkl');
+    expect(result).toEqual({});
+  });
+
+  it('Controller Tset Delete', () => {
+    const result = controller.remove('dsfkl');
+    expect(result).toEqual({});
   });
 });

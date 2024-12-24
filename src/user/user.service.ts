@@ -7,36 +7,36 @@ import { User } from './entities/user.entity';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel('users') private userModel:Model<User>){}
+  constructor(@InjectModel('users') private userModel: Model<User>) {}
 
   async findAll() {
     return this.userModel.find();
   }
 
-  async findOne(id: number) {
-    const user = await this.userModel.findOne({where:{_id :id}})
-    if(!user){
-      throw new HttpException('NOT FOUND' , HttpStatus.NOT_FOUND)
+  async findOne(id: string) {
+    const user = await this.userModel.findOne({ where: { _id: id } });
+    if (!user) {
+      throw new HttpException('NOT FOUND', HttpStatus.NOT_FOUND);
     }
-    return {sataus: 200 , user}
+    return { sataus: 200, user };
   }
 
-  async update(id: number, updateUserDto: UpdateUserDto) {
-    const curretUser = await this.userModel.findOne({where:{_id :id}})
-    if(!curretUser){
-      throw new HttpException('NOT FOUND' , HttpStatus.NOT_FOUND)
+  async update(id: string, updateUserDto: UpdateUserDto) {
+    const curretUser = await this.userModel.findOne({ where: { _id: id } });
+    if (!curretUser) {
+      throw new HttpException('NOT FOUND', HttpStatus.NOT_FOUND);
     }
-    const newUser = {...curretUser , ...updateUserDto}
-    await this.userModel.findByIdAndUpdate(id , newUser)
-    return {sataus: 200 , id: id}
+    const newUser = { ...curretUser, ...updateUserDto };
+    await this.userModel.findByIdAndUpdate(id, newUser);
+    return { sataus: 200, id: id };
   }
 
-  async remove(id: number) {
-    const curretUser = await this.userModel.findOne({where:{_id :id}})
-    if(!curretUser){
-      throw new HttpException('NOT FOUND' , HttpStatus.NOT_FOUND)
+  async remove(id: string) {
+    const curretUser = await this.userModel.findOne({ where: { _id: id } });
+    if (!curretUser) {
+      throw new HttpException('NOT FOUND', HttpStatus.NOT_FOUND);
     }
-    await this.userModel.findByIdAndDelete(id)
-    return {sataus: 200 , id: id}
+    await this.userModel.findByIdAndDelete(id);
+    return { sataus: 200, id: id };
   }
 }
