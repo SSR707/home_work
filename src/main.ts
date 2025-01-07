@@ -6,7 +6,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api');
   const config = new DocumentBuilder()
-    .setTitle('Besic Project')
+    .setTitle('Project')
     .addBearerAuth(
       {
         type: 'http',
@@ -16,7 +16,7 @@ async function bootstrap() {
       },
       'access-token',
     )
-    .setDescription('The Besic project API description')
+    .setDescription('The Project API description')
     .setVersion('1.0')
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
