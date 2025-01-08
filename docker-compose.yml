@@ -1,26 +1,24 @@
-version: '3.8'
 services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+  super-app:
+    build: .
     ports:
-      - '3001:3000'
+      - '5000:3000'
+    env_file:
+      - .env
     depends_on:
-      - db
+      - super-db
+    networks:
+      - super-net
+  super-db:
+    image: postgres
     environment:
-      DATABASE_HOST: db
-      DATABASE_PORT: 5432
-      DATABASE_USER: postgres
-      DATABASE_PASSWORD: saman77071!
-      DATABASE_NAME: besicp
-
-  db:
-    image: postgres:15
-    container_name: postgres
+      - POSTGRES_PASSWORD=saman77071!
+      - POSTGRES_DB=besicp
     ports:
-      - '5432:5432'
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: saman77071!
-      POSTGRES_DB: besicp
+      - '5433:5432'
+    networks:
+      - super-net
+
+networks:
+  super-net:
+    driver: bridge

@@ -1,4 +1,7 @@
 ```bash
+#docker Compose ishga tushirvorish va lohha ishga tushadi 
+$ docker-compose up -d
+
 # Docker image yaratish, tag bilan belgilash
 $ docker build -t my-nestjs-app .
 

@@ -22,7 +22,7 @@ import { JwtModule } from '@nestjs/jwt';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
-        host: configService.get('PG_HOST') || 'db',
+        host: configService.get('PG_HOST') || 'super-db',
         port: configService.get<number>('PG_PORT') || 5432,
         username: configService.get('PG_USER') || 'postgres',
         password: configService.get('PG_PASSWORD') || 'saman77071!',
