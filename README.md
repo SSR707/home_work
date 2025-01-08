@@ -1,5 +1,5 @@
 ```bash
-#docker Compose ishga tushirvorish va lohha ishga tushadi 
+#docker Compose ishga tushirvorish va loyha ishga tushadi 
 $ docker-compose up -d
 
 # Docker image yaratish, tag bilan belgilash
