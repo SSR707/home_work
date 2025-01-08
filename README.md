@@ -5,6 +5,7 @@ $ docker build -t my-nestjs-app .
 #  NestJS ilovasini Docker konteynerda ishga tushirish
 $ docker run -p 3001:3000 my-nestjs-app
 ```
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
