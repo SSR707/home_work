@@ -11,7 +11,7 @@ export class UserService {
   ) {}
 
   async getProfile(user) {
-    return this.userRepository.findOne({where:{id:user.id}});
+    return this.userRepository.findOne({ where: { id: user.id } });
   }
 
   async findAll() {

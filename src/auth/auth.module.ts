@@ -9,7 +9,11 @@ import { EmailService } from 'src/email/email.service';
 import { CustomJwtModule } from 'src/custom-jwt/custom-jwt.module';
 
 @Module({
-  imports:[TypeOrmModule.forFeature([User , Otp]), EmailModule, CustomJwtModule],
+  imports: [
+    TypeOrmModule.forFeature([User, Otp]),
+    EmailModule,
+    CustomJwtModule,
+  ],
   controllers: [AuthController],
   providers: [AuthService],
 })

@@ -31,7 +31,7 @@ export class UserController {
   @Get('profile')
   @ApiOperation({ summary: 'Foydalanuvchini Profilini korish' })
   @ApiOkResponse({ description: 'User data' })
-  @ApiUnauthorizedResponse({description:'Token Not Found'})
+  @ApiUnauthorizedResponse({ description: 'Token Not Found' })
   getProfile(@Req() req: Request) {
     return this.userService.getProfile(req['user']);
   }
@@ -39,8 +39,10 @@ export class UserController {
   @Get()
   @Roles(Role.ADMIN)
   @ApiOperation({ summary: 'Barcha Foydalanuvchilarni korish' })
-  @ApiUnauthorizedResponse({description:'Token Not Found'})
-  @ApiForbiddenResponse({description:'You do not have permission to access this resource'})
+  @ApiUnauthorizedResponse({ description: 'Token Not Found' })
+  @ApiForbiddenResponse({
+    description: 'You do not have permission to access this resource',
+  })
   findAll() {
     return this.userService.findAll();
   }
@@ -48,8 +50,10 @@ export class UserController {
   @Get(':id')
   @Roles(Role.ADMIN)
   @ApiOperation({ summary: 'Foydalanuvchini id boyicha qidirish' })
-  @ApiUnauthorizedResponse({description:'Token Not Found'})
-  @ApiForbiddenResponse({description:'You do not have permission to access this resource'})
+  @ApiUnauthorizedResponse({ description: 'Token Not Found' })
+  @ApiForbiddenResponse({
+    description: 'You do not have permission to access this resource',
+  })
   @ApiNotFoundResponse({ description: 'User NOT_FOUND' })
   @ApiOkResponse({ description: 'User data' })
   findOne(@Param('id') id: string) {
@@ -59,9 +63,11 @@ export class UserController {
   @Patch(':id')
   @Roles(Role.ADMIN)
   @ApiOperation({ summary: 'Foydalanuvchini id boyicha yangilash' })
-  @ApiUnauthorizedResponse({description:'Token Not Found'})
+  @ApiUnauthorizedResponse({ description: 'Token Not Found' })
   @ApiNotFoundResponse({ description: 'User NOT_FOUND' })
-  @ApiForbiddenResponse({description:'You do not have permission to access this resource'})
+  @ApiForbiddenResponse({
+    description: 'You do not have permission to access this resource',
+  })
   @ApiOkResponse({ description: 'User is Updated' })
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(+id, updateUserDto);
@@ -70,8 +76,10 @@ export class UserController {
   @Delete(':id')
   @Roles(Role.ADMIN)
   @ApiOperation({ summary: 'Foydalanuvchini id boyicha ochirish' })
-  @ApiUnauthorizedResponse({description:'Token Not Found'})
-  @ApiForbiddenResponse({description:'You do not have permission to access this resource'})
+  @ApiUnauthorizedResponse({ description: 'Token Not Found' })
+  @ApiForbiddenResponse({
+    description: 'You do not have permission to access this resource',
+  })
   @ApiNotFoundResponse({ description: 'User NOT_FOUND' })
   @ApiOkResponse({ description: 'User is Deleted' })
   remove(@Param('id') id: string) {

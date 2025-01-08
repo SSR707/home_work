@@ -67,7 +67,7 @@ export class AuthService {
       await this.customJwtService.generateAccessToken(currentUser);
     const refreshToken =
       await this.customJwtService.generateRefreshToken(currentUser);
-    return { refreshToken, accessToken};
+    return { refreshToken, accessToken };
   }
 
   async verifyUser(verifyUserDto: VerifyUserDto) {
