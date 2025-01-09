@@ -1,4 +1,4 @@
-# home_work
+# https://github.com/SSR707/home_work/tree/82-dars <= Shu loyha toliq Composeda ishlagan
 
 ```bash
 #docker composeni ishga tushirish
