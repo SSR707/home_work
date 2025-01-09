@@ -1,0 +1,40 @@
+services:
+  app: 
+    container_name: nestjs-app-postgres
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '5000:3001'
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    environment:
+      PG_HOST = postgres
+      PG_PORT = 5432
+      PG_USER = postgres
+      PG_PASSWORD = saman77071!
+      PG_DATABASE = nestdb
+    networks:
+      - app-networks
+  
+  postgres:
+    container_name: postgres
+    image: postgres:15
+    ports:
+      - '5433:5432'
+    environment:
+      PG_USER = postgres
+      PG_PASSWORD = saman77071!
+      PG_DATABASE = nestdb
+    volumes:
+      - postgres_data:/var/lib/postgres/data
+    networks:
+      - app-networks
+
+volumes:
+  postgres_data:
+
+networks:
+  app-networks:

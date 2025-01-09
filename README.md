@@ -1,2 +1,6 @@
 # home_work
-homeworks
+
+```bash
+#docker composeni ishga tushirish
+$ docker-compose up
+```
