@@ -11,11 +11,11 @@ services:
     depends_on:
       - postgres
     environment:
-      PG_HOST = postgres
-      PG_PORT = 5432
-      PG_USER = postgres
-      PG_PASSWORD = saman77071!
-      PG_DATABASE = nestdb
+      POSTGRES_HOST = postgres
+      POSTGRES_PORT = 5432
+      POSTGRES_USER = postgres
+      POSTGRES_PASSWORD = saman77071!
+      POSTGRES_DATABASE = nestdb
     networks:
       - app-networks
   
@@ -25,9 +25,9 @@ services:
     ports:
       - '5433:5432'
     environment:
-      PG_USER = postgres
-      PG_PASSWORD = saman77071!
-      PG_DATABASE = nestdb
+      POSTGRES_USER = postgres
+      POSTGRES_PASSWORD = saman77071!
+      POSTGRES_DATABASE = nestdb
     volumes:
       - postgres_data:/var/lib/postgres/data
     networks:
