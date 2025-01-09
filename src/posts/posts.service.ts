@@ -10,7 +10,7 @@ import { ErrorException } from 'src/auth/entities/error.excaption';
 export class PostsService {
   constructor(@InjectModel('posts') private postsModel: Model<Posts>) {}
   async create(createPostDto: CreatePostDto, id: string) {
-    const new_post = new this.postsModel(createPostDto);
+    const new_post = new this.postsModel({user_id:id,...createPostDto});
     await new_post.save();
     return {
       status: ErrorException.CREATED().statusCode,
