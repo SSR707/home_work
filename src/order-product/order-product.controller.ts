@@ -2,6 +2,8 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { OrderProductService } from './order-product.service';
 import { CreateOrderProductDto } from './dto/create-order-product.dto';
 import { UpdateOrderProductDto } from './dto/update-order-product.dto';
+import { Roles } from 'src/decorator/role.decorator';
+import { Role } from 'src/common/enums/enums';
 
 @Controller('order-product')
 export class OrderProductController {
@@ -23,11 +25,13 @@ export class OrderProductController {
   }
 
   @Patch(':id')
+  @Roles(Role.ADMIN)
   update(@Param('id') id: string, @Body() updateOrderProductDto: UpdateOrderProductDto) {
     return this.orderProductService.update(+id, updateOrderProductDto);
   }
 
   @Delete(':id')
+  @Roles(Role.ADMIN)
   remove(@Param('id') id: string) {
     return this.orderProductService.remove(+id);
   }
