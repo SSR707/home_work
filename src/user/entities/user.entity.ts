@@ -2,7 +2,7 @@ import { Role } from 'src/common/enums/enums';
 import { Order } from '../../order/entities/order.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
-Entity();
+@Entity()
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
