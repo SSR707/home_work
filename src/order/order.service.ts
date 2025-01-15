@@ -12,24 +12,27 @@ export class OrderService {
     @InjectRepository(Order) private orderRepository: Repository<Order>,
     @InjectRepository(User) private userRepository: Repository<User>,
   ) {}
-  async create(createOrderDto: CreateOrderDto , id:number) {
+  async create(createOrderDto: CreateOrderDto, id: number) {
     const user = await this.userRepository.findOne({ where: { id } });
     if (!user) {
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }
     const order = this.orderRepository.create({
       ...createOrderDto,
-      user, 
+      user,
     });
     return this.orderRepository.save(order);
   }
 
   async findAll() {
-    return this.orderRepository.find({relations: ['user'],});
+    return this.orderRepository.find({ relations: ['user'] });
   }
 
   async findOne(id: number) {
-    const order = await this.orderRepository.findOne({ where: { id } , relations: ['user'],});
+    const order = await this.orderRepository.findOne({
+      where: { id },
+      relations: ['user'],
+    });
     if (!order) {
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }

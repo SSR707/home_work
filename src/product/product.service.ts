@@ -15,11 +15,14 @@ export class ProductService {
   }
 
   async findAll() {
-    return this.productRepository.find({ relations: [ 'orderProducts'],});
+    return this.productRepository.find({ relations: ['orderProducts'] });
   }
 
   async findOne(id: number) {
-    const product = await this.productRepository.findOne({ where: { id }, relations: [ 'orderProducts'] });
+    const product = await this.productRepository.findOne({
+      where: { id },
+      relations: ['orderProducts'],
+    });
     if (!product) {
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }

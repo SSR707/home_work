@@ -1,6 +1,13 @@
 import { Status } from 'src/common/enums/enums';
 import { User } from '../../user/entities/user.entity';
-import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { OrderProduct } from 'src/order-product/entities/order-product.entity';
 
 @Entity()

@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsNumber} from 'class-validator';
+import { IsEmail, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class verificationAuthDto {
   @IsEmail()
@@ -8,5 +8,4 @@ export class verificationAuthDto {
   @IsNumber()
   @IsNotEmpty()
   otp_code: number;
-
 }

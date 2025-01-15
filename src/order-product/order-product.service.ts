@@ -8,19 +8,25 @@ import { Repository } from 'typeorm';
 @Injectable()
 export class OrderProductService {
   constructor(
-    @InjectRepository(OrderProduct) private orderProductRepository: Repository<OrderProduct>,
+    @InjectRepository(OrderProduct)
+    private orderProductRepository: Repository<OrderProduct>,
   ) {}
 
   async create(createOrderProductDto: CreateOrderProductDto) {
-    return this.orderProductRepository.create(createOrderProductDto)
+    return this.orderProductRepository.create(createOrderProductDto);
   }
 
   async findAll() {
-    return this.orderProductRepository.find({relations: ['Order', 'product'],});
+    return this.orderProductRepository.find({
+      relations: ['Order', 'product'],
+    });
   }
 
   async findOne(id: number) {
-    const orderProduct = await this.orderProductRepository.findOne({ where: { id } , relations: ['Order', 'product'],});
+    const orderProduct = await this.orderProductRepository.findOne({
+      where: { id },
+      relations: ['Order', 'product'],
+    });
     if (!orderProduct) {
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }
@@ -28,17 +34,24 @@ export class OrderProductService {
   }
 
   async update(id: number, updateOrderProductDto: UpdateOrderProductDto) {
-    const orderProduct = await this.orderProductRepository.findOne({ where: { id } });
+    const orderProduct = await this.orderProductRepository.findOne({
+      where: { id },
+    });
     if (!orderProduct) {
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }
-    const newOrderProductData = Object.assign(orderProduct, updateOrderProductDto);
+    const newOrderProductData = Object.assign(
+      orderProduct,
+      updateOrderProductDto,
+    );
     await this.orderProductRepository.save(newOrderProductData);
     return { status: HttpStatus.OK, message: 'Order Product is Updated' };
   }
 
   async remove(id: number) {
-    const orderProduct = await this.orderProductRepository.findOne({ where: { id } });
+    const orderProduct = await this.orderProductRepository.findOne({
+      where: { id },
+    });
     if (!orderProduct) {
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }

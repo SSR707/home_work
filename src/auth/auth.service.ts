@@ -29,7 +29,10 @@ export class AuthService {
       );
     }
     const salt = await bcrypt.genSalt();
-    registerAuthDto.password = await bcrypt.hash(registerAuthDto.password, salt);
+    registerAuthDto.password = await bcrypt.hash(
+      registerAuthDto.password,
+      salt,
+    );
     const otp = Math.floor(Math.random() * 100000) + 1;
     await this.emailService.sendActivedOtp(registerAuthDto.email, 'otp', otp);
     const user = this.userRepository.create(registerAuthDto);
@@ -72,7 +75,7 @@ export class AuthService {
     return { refreshToken, accessToken };
   }
 
-  async verification(verificationData:verificationAuthDto) {
+  async verification(verificationData: verificationAuthDto) {
     const currentUser = await this.userRepository.findOne({
       where: { email: verificationData.email },
     });

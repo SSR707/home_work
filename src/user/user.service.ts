@@ -15,10 +15,13 @@ export class UserService {
   }
 
   async findAll() {
-    return this.userRepository.find({ relations: [ 'Order'],});
+    return this.userRepository.find({ relations: ['Order'] });
   }
   async findOne(id: number) {
-    const user = await this.userRepository.findOne({ where: { id } ,relations: [ 'Order'],});
+    const user = await this.userRepository.findOne({
+      where: { id },
+      relations: ['Order'],
+    });
     if (!user) {
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }
