@@ -24,6 +24,7 @@ body {
 /* HEADER START */
 .main_header {
   padding: 20px;
+  border-bottom: 2px solid rgba(60, 137, 204, 0.2);
 }
 .main_header__block {
   display: flex;
@@ -39,6 +40,10 @@ body {
   font-size: 20px;
   color: #000;
 }
+.main_header__link:hover {
+  border-bottom: 2px solid rgba(0, 130, 244, 1);
+  color: #0082f4;
+}
 .main_header__btn {
   font-weight: 400;
   font-size: 20px;
@@ -47,6 +52,10 @@ body {
   background: #0082f4;
   border: none;
   padding: 15px 30px;
+}
+
+.main_header__btn:hover {
+  background-color: rgba(0, 130, 244, 0.6);
 }
 /* HEADER END */
 
@@ -78,7 +87,7 @@ body {
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
-  color: #000;
+  color: rgba(0, 0, 0, 0.6);
   margin-bottom: 30px;
 }
 
@@ -96,6 +105,25 @@ body {
   color: #fff;
   border: none;
   background: #0082f4;
+}
+
+.hero__btn-1:hover {
+  background-color: rgba(0, 130, 244, 0.6);
+}
+
+.hero__btn-2:hover {
+  background-color: rgba(0, 130, 244, 0.8);
+}
+
+.hero__btn-2 {
+  background-color: transparent;
+  font-weight: 500;
+  font-size: 18px;
+  color: #000;
+  border: 2px solid rgba(0, 130, 244, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 /* HERO END */
 
@@ -124,7 +152,7 @@ body {
   font-weight: 400;
   font-size: 20px;
   line-height: 150%;
-  color: #000;
+  color: rgba(0, 0, 0, 0.6);
   margin-bottom: 30px;
 }
 
@@ -136,8 +164,10 @@ body {
   font-size: 20px;
   background: #0082f4;
   border: none;
-
   color: #fff;
+}
+.about__btn:hover {
+  background-color: rgba(0, 130, 244, 0.6);
 }
 /* ABOUT END */
 
@@ -180,7 +210,7 @@ body {
   font-size: 20px;
   line-height: 150%;
   text-align: center;
-  color: #000;
+  color: rgba(0, 0, 0, 0.6);
   width: 324px;
 }
 /* WORK END */
@@ -235,7 +265,7 @@ body {
   font-weight: 400;
   font-size: 20px;
   line-height: 150%;
-  color: #000;
+  color: rgba(0, 0, 0, 0.6);
   padding: 30px 50px;
 }
 .customer__name {
@@ -251,7 +281,7 @@ body {
   font-weight: 400;
   font-size: 20px;
   line-height: 120%;
-  color: #000;
+  color: rgba(0, 0, 0, 0.6);
   padding-left: 105px;
   padding-bottom: 30px;
 }
@@ -317,6 +347,9 @@ body {
   padding: 15px 28px;
   border: none;
 }
+.newsletter__button:hover {
+  background-color: rgba(0, 130, 244, 0.6);
+}
 /* NEWSLETTER END */
 
 /* FOOTER START */
@@ -360,5 +393,7 @@ body {
   border-radius: 10px;
   border: none;
 }
-
+.footer__button:hover {
+  background-color: rgba(197, 200, 202, 0.947);
+}
 /* FOOTER END */
