@@ -217,6 +217,9 @@ body {
 
 /* CUSTEMER START */
 
+.custemer {
+  padding-bottom: 150px;
+}
 .custemer__title {
   display: flex;
   justify-content: space-between;
@@ -246,6 +249,7 @@ body {
   display: flex;
   border: 1px solid rgba(0, 130, 244, 0.5);
   border-radius: 10px;
+  overflow: hidden;
   width: 420px;
   width: 420px;
 }
@@ -253,7 +257,6 @@ body {
 .customer__image {
   background-color: rgba(0, 130, 244, 1);
   width: 62px;
-  border-radius: 10px;
 }
 .customer__image_sub {
   position: relative;
@@ -290,11 +293,10 @@ body {
 
 /* NEWSLETTER START */
 .newsletter {
-  padding: 150px;
+  background-color: rgba(232, 236, 255, 0.8);
 }
 
 .newsletter__block {
-  background-color: rgba(232, 236, 255, 0.3);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -353,6 +355,10 @@ body {
 /* NEWSLETTER END */
 
 /* FOOTER START */
+
+.footer {
+  padding-top: 60px;
+}
 .footer__list {
   display: flex;
   justify-content: center;
