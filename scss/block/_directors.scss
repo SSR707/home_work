@@ -1,0 +1,116 @@
+.directors {
+  padding-top: 140px;
+  padding-bottom: 140px;
+  background-color: #004047;
+  background-image: url("../../img/directors_background__img.png"),
+    url("../../img/directors_background__img-2.png");
+  background-repeat: no-repeat;
+  background-position: left top, right bottom;
+}
+
+.directors__title {
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 100%;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 64px;
+}
+
+.directors__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 30px;
+  row-gap: 76px;
+}
+
+.directors__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #012f34;
+  padding: 29px 32px 60px 29px;
+}
+
+.directors__info {
+  text-align: center;
+  margin-top: 16px;
+}
+.directors__description {
+  margin-top: 8px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 167%;
+  text-align: center;
+  color: #fff;
+}
+.directors__name {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 156%;
+  text-align: center;
+  color: #79c8c7;
+}
+.directors__name,
+.directors__skills {
+  padding: 2px 0;
+}
+
+.directors__skills {
+  font-style: italic;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 167%;
+  text-align: center;
+  color: #fff;
+}
+
+.directors__btn {
+  position: absolute;
+  top: 87%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  color: white;
+  background-color: #f67e7e;
+  padding: 30px 30px;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+.directors__btn:hover {
+  background-color: #79c8c7;
+}
+
+.directors__btn_plas-1,
+.directors__btn_plas-2 {
+  position: absolute;
+  background: #012f34;
+  transition: transform 0.3s ease;
+}
+
+.directors__btn_plas-1 {
+  width: 4px;
+  height: 16px;
+}
+
+.directors__btn_plas-2 {
+  width: 16px;
+  height: 4px;
+}
+
+.directors__contact {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.directors__btn:hover .directors__btn_plas-1 {
+  transform: rotate(45deg);
+}
+
+.directors__btn:hover .directors__btn_plas-2 {
+  transform: rotate(45deg);
+}

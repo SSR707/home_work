@@ -1,0 +1,27 @@
+.main_header {
+  padding-top: 73px;
+}
+
+.main_header__block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.main__header__title {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+}
+
+.main_header__list {
+  display: flex;
+  gap: 40px;
+}
+
+.main_header__btn {
+  @include btn;
+}
+
+.main_header__link {
+  @include link;
+}

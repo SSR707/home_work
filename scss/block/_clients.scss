@@ -1,0 +1,25 @@
+.clients {
+  padding: 140px 0px;
+  background-color: #012f34;
+  background-image: url("../../img/clients_beckgrougds_img-1.png");
+  background-repeat: no-repeat;
+  background-position: left top;
+}
+
+.clients__block {
+  text-align: center;
+}
+
+.clients__block {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 100%;
+  text-align: center;
+  color: #fff;
+}
+.clients__img {
+  margin-top: 64px;
+  display: flex;
+  gap: 80px;
+  align-items: center;
+}

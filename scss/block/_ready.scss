@@ -1,0 +1,31 @@
+.ready {
+  background-color: #f67e7e;
+  padding: 76px;
+  background-image: url("../../img/ready_beckgroud_img.png");
+  background-repeat: no-repeat;
+  background-position: left bottom;
+}
+
+.ready__block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ready__content {
+  display: flex;
+  align-items: center;
+  gap: 260px;
+}
+
+.ready__title {
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 100%;
+  color: #012f34;
+}
+
+.ready__btn {
+  @include btn;
+  border: 2px solid #000;
+  color: #000;
+}

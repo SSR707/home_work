@@ -1,0 +1,33 @@
+.about {
+  padding-top: 118px;
+  padding-bottom: 120px;
+  background-image: url("../../img/about_background__img.png");
+  background-repeat: no-repeat;
+  background-position: right bottom;
+}
+
+.about__block {
+  display: flex;
+  gap: 187px;
+}
+
+.about__title {
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 156%;
+  color: #fff;
+}
+
+.about__div {
+  width: 50px;
+  height: 4px;
+  background-color: #f67e7e;
+  margin-bottom: 40px;
+}
+
+.about__text {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 156%;
+  color: #fff;
+}
