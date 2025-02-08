@@ -1,0 +1,120 @@
+.footer {
+  padding-top: 66px;
+  padding-bottom: 64px;
+  background-color: $footer-color;
+}
+.footer__block {
+  text-align: center;
+}
+.footer_list {
+  margin: 24px 0px;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+.footer__item {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 167%;
+  color: #fff;
+}
+
+.footer__text {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 167%;
+  text-align: center;
+  color: rgba($color: #fff, $alpha: 0.5);
+}
+.footer__bottom {
+  margin-top: 40px;
+}
+.footer__img {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+.footer__copyright {
+  margin-top: 16px;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 167%;
+  text-align: center;
+  color: rgba($color: #fff, $alpha: 0.5);
+}
+
+@media screen and (min-width: 768px) {
+  .footer {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+  .footer__content {
+    display: flex;
+    justify-content: space-between;
+  }
+  .footer__bottom {
+    margin-top: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer__icon {
+    display: flex;
+    flex-direction: column;
+    gap: 53px;
+  }
+  .footer_list {
+    margin: 0;
+  }
+  .footer__text {
+    text-align: end;
+  }
+  .footer__img {
+    width: 104px;
+    height: 24px;
+  }
+
+  .footer__copyright {
+    margin-top: 0px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .footer {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+  .footer__block {
+    display: flex;
+    justify-content: space-between;
+  }
+  .footer__bottom {
+    flex-direction: column;
+    gap: 51px;
+    margin: 0;
+  }
+  .footer__content {
+    gap: 125px;
+  }
+  .footer__icon {
+    gap: 25px;
+  }
+  .footer__icon > img {
+    width: 160px;
+    height: 40px;
+  }
+  .footer_list {
+    display: flex;
+    justify-content: start;
+    gap: 40px;
+  }
+  .footer__text {
+    text-align: start;
+  }
+  .footer__img {
+    margin-left: auto;
+  }
+  .footer__item {
+    @include link;
+  }
+}

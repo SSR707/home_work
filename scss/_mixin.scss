@@ -1,0 +1,25 @@
+@mixin link {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 156%;
+  color: #fff;
+}
+
+@mixin btn {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 156%;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 24px;
+  background-color: transparent;
+  padding: 9px 33px 11px 32px;
+}
+
+@mixin text {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 187%;
+  text-align: center;
+  color: #fff;
+}
