@@ -53,6 +53,7 @@ form.addEventListener("submit", (e) => {
   }
   users.push({ id: Date.now(), ...user });
   addusers();
+  form.reset();
 });
 
 user_list.addEventListener("click", (e) => {
