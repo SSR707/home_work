@@ -1,0 +1,19 @@
+import express from "express";
+import mongoose from "mongoose";
+import { userRoutes } from "./src/routes/users.routes.js";
+import cors from "cors";
+
+const app = express();
+app.use(
+  cors({
+    origin: "http://127.0.0.1:5500",
+  })
+);
+app.use(express.json());
+
+app.use("/users", userRoutes);
+
+app.listen(3333, async () => {
+  await mongoose.connect("mongodb://127.0.0.1:27017/user-card");
+  console.log("3333 Started");
+});
