@@ -14,6 +14,8 @@ app.use(express.json());
 app.use("/users", userRoutes);
 
 app.listen(3333, async () => {
-  await mongoose.connect("mongodb://127.0.0.1:27017/user-card");
+  await mongoose.connect(
+    "mongodb+srv://samandar:saman77071!@mongodb-demo.6k1pd.mongodb.net/user-crd"
+  );
   console.log("3333 Started");
 });
