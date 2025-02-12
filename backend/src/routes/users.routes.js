@@ -10,6 +10,6 @@ export const userRoutes = express.Router();
 
 userRoutes.get("/", findAllUsers);
 userRoutes.get("/:id", findOneUser);
-userRoutes.post("/", upload.single('image'), createUser,);
+userRoutes.post("/",createUser,);
 userRoutes.put("/:id", updateUserById);
 userRoutes.delete("/:id", deleteUserById);
