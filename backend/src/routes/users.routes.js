@@ -6,7 +6,6 @@ import {
   findOneUser,
   updateUserById,
 } from "../controller/users.controller.js";
-import { upload } from "../utils/mullter.js";
 export const userRoutes = express.Router();
 
 userRoutes.get("/", findAllUsers);
