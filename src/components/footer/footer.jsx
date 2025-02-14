@@ -6,7 +6,7 @@ import Instagram from "../../assets/instagram.svg";
 import Facebook from "../../assets/facebook.svg";
 import Youtube from "../../assets/youtube.svg";
 import Humo from "../../assets/humo.svg";
-import Uzcard from "../../assets/humo.svg";
+import Uzcard from "../../assets/uzcard.svg";
 import Payme from "../../assets/payme.svg";
 
 export const Footer = () => {
@@ -91,7 +91,7 @@ export const Footer = () => {
       <nav className="nav_block-2">
         <div className="container">
           <div className="footer__block-2">
-            <ul className="footer__list">
+            <ul className="footer__list-2">
               <li>
                 <h3 className="footer_sub_title">Ижтимоий тармоқлар</h3>
                 <div className="footer__img">
@@ -105,8 +105,16 @@ export const Footer = () => {
               <li>
                 <h3 className="footer_sub_title">Боғланиш</h3>
                 <div className="footer__contact">
-                  <p className="footer__phone">+998 90 253 77 53</p>
-                  <p className="footer"></p>
+                  <p className="footer__sub_contact">+998 90 253 77 53</p>
+                  <p className="footer__sub_contact">support@liber.uz</p>
+                </div>
+              </li>
+              <li>
+                <h3 className="footer_sub_title">Биз қабул қиламиз</h3>
+                <div className="footer__card_img">
+                  <img src={Uzcard} alt="" />
+                  <img src={Humo} alt="" />
+                  <img src={Payme} alt="" />
                 </div>
               </li>
             </ul>

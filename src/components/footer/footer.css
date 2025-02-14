@@ -29,6 +29,45 @@ footer {
 }
 .nav_block-2 {
   background-color: #10182c;
+  padding-top: 12px;
+  padding-bottom: 20px;
 }
-.footer__block-2 {
+.footer__list-2 {
+  display: flex;
+  gap: 131px;
+}
+
+.footer_sub_title {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 114%;
+  color: white;
+  text-align: start;
+}
+.footer__contact {
+  display: flex;
+  gap: 23px;
+}
+
+.footer__img {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  text-align: start;
+  margin-top: 12px;
+}
+.footer__sub_contact {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 100%;
+  color: white;
+  margin-top: 11px;
+}
+.footer__card_img {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 8px;
+  margin-top: 9px;
+  justify-content: end;
 }
