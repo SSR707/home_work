@@ -1,0 +1,25 @@
+.info {
+  padding-top: 56px;
+}
+
+.info__list {
+  display: flex;
+}
+.info__item {
+  display: flex;
+  padding: 26px 26px 26px 15px;
+  gap: 20px;
+}
+
+.info__title {
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 120%;
+  color: #11142d;
+  margin-bottom: 7px;
+}
+.info__text {
+  font-weight: 400;
+  font-size: 11px;
+  color: #aaa;
+}

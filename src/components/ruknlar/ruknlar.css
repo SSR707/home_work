@@ -1,0 +1,24 @@
+.ruknlar {
+  padding-top: 40px;
+}
+.ruknlar__title {
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 125%;
+  color: #000;
+  margin-bottom: 32px;
+}
+.ruknlar__card {
+  border-radius: 14px;
+  width: 200px;
+  height: 150px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: start;
+  font-size: 13px;
+  color: #fff;
+  align-items: end;
+  padding-bottom: 17px;
+  padding-left: 16px;
+}

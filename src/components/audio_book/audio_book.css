@@ -1,0 +1,11 @@
+.audio_book {
+  padding-top: 64px;
+}
+
+.audio_book__title {
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 125%;
+  color: #000;
+  margin-bottom: 34px;
+}
