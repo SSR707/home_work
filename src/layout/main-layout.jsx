@@ -8,6 +8,7 @@ import { InfoCard } from "../components/info/info";
 import { Ruknlar } from "../components/ruknlar/ruknlar";
 import { NewBook } from "../components/new_book/new_book";
 import { AoudioBook } from "../components/audio_book/audio_book";
+import { Footer } from "../components/footer/footer";
 
 const data = [
   {
@@ -66,7 +67,9 @@ export const MainLayout = () => {
         <NewBook />
         <AoudioBook />
       </main>
-      <footer></footer>
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 };

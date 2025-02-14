@@ -1,0 +1,34 @@
+footer {
+  padding-top: 93px;
+}
+
+.nav_block-1 {
+  background-color: #eef4ff;
+}
+
+.footer__block-1 {
+  display: flex;
+  gap: 144px;
+  padding-top: 31px;
+  padding-bottom: 61px;
+}
+
+.footer__item:not(:last-child) {
+  margin-bottom: 25px;
+}
+
+.footer__title {
+  font-weight: 700;
+  font-size: 20px;
+  color: #11142d;
+}
+.footer__link {
+  font-weight: 400;
+  font-size: 18px;
+  color: #11142d;
+}
+.nav_block-2 {
+  background-color: #10182c;
+}
+.footer__block-2 {
+}
