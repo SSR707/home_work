@@ -29,14 +29,10 @@ export const findOneUser = async (req, res, next) => {
 
 export const createUser = async (req, res, next) => {
   try {
-    const { title } = req.body.user;
+    const { title } = req.body;
     const imagePath = req.file ? `/imgs/${req.file.filename}` : "";
     const user = new Users({
-      fullname,
-      description,
-      twitter,
-      linkedin,
-      imags: imagePath,
+      title
     });
     await user.save();
     return res.status(201).send({ message: "Created", user: user.id });
@@ -57,11 +53,7 @@ export const updateUserById = async (req, res, next) => {
     const { title } = req.body;
     const newUserData = {
       ...user._doc,
-      fullname,
-      description,
-      imags,
-      twitter,
-      linkedin,
+      title
     };
     const updatedUser = await Users.findByIdAndUpdate(id, newUserData);
     return res
