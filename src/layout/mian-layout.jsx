@@ -1,5 +1,13 @@
 import { TodoCard } from "../components/todo-card/todo_card";
 import React from "react";
+import { request } from "../config/request";
+
+const getUser = (setData) => {
+  request.get("/users").then((res) => {
+    console.log(res.data);
+    setData(res.data.users);
+  });
+};
 
 export function MainLayout() {
   const [data, setData] = React.useState([]);
@@ -7,10 +15,13 @@ export function MainLayout() {
   const submit = (e) => {
     e.preventDefault();
     if (input) {
-      setData([...data, { id: data.length + 1, title: input }]);
+      request.post("/users", { title: input }).then((res) => {
+        getUser(setData);
+      });
       setInput("");
     }
   };
+  React.useEffect(() => getUser(setData), []);
   return (
     <>
       <main>
@@ -41,10 +52,11 @@ export function MainLayout() {
             <ul className="flex flex-col items-center pt-[25px]">
               {data.map((item) => (
                 <TodoCard
-                  key={item.id}
+                  getUser={getUser}
+                  key={item._id}
                   title={item.title}
                   setData={setData}
-                  id={item.id}
+                  id={item._id}
                 />
               ))}
             </ul>

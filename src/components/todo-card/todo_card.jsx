@@ -1,17 +1,16 @@
 import { MdDelete, MdModeEditOutline } from "react-icons/md";
+import { request } from "../../config/request";
 
-export const TodoCard = ({ title, setData, id }) => {
+export const TodoCard = ({ getUser, title, setData, id }) => {
   const deleteItem = () => {
-    setData((pState) => {
-      return pState.filter((item) => item.id !== id);
+    request.delete(`/users/${id}`).then((res) => {
+      getUser(setData);
     });
   };
   const editItem = () => {
     const newValue = prompt("New Data", title);
-    setData((pState) => {
-      return pState.map((item) =>
-        item.id === id ? { id, title: newValue || title } : item
-      );
+    request.put(`/users/${id}`, { title: newValue || title }).then((res) => {
+      getUser(setData);
     });
   };
   return (
