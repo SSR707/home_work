@@ -17,7 +17,7 @@ app.use("/users", userRoutes);
 
 app.listen(3333, async () => {
   await mongoose.connect(
-    "mongodb+srv://samandar:saman77071!@mongodb-demo.6k1pd.mongodb.net/user-crd"
+    "mongodb+srv://samandar:saman77071!@mongodb-demo.6k1pd.mongodb.net/user-crud"
   );
   console.log("3333 Started");
 });
