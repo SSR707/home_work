@@ -73,7 +73,7 @@ user_list.addEventListener("click", async (e) => {
       setData("users", users);
     } else {
       const response = await fetch(
-        `http://localhost:3000/users/${e.target.id}`,
+        `http://65.0.76.60:3333/users/${e.target.id}`,
         {
           method: "DELETE",
         }
@@ -88,7 +88,7 @@ user_list.addEventListener("click", async (e) => {
     users = users.filter((item) => item.id !== userId);
     setData("users", users);
     console.log(user);
-    const response = await fetch("http://localhost:3000/users", {
+    const response = await fetch("http://65.0.76.60:3333/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -108,7 +108,7 @@ user_list.addEventListener("click", async (e) => {
 
 const getUser = async () => {
   try {
-    const req = await fetch("http://localhost:3000/users");
+    const req = await fetch("http://65.0.76.60:3333/users");
     const data = await req.json();
     addusers(data.users);
   } catch (error) {

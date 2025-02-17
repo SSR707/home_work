@@ -29,7 +29,7 @@ export const findOneUser = async (req, res, next) => {
 
 export const createUser = async (req, res, next) => {
   try {
-    const { fullname, description, imags, twitter, linkedin } = req.body.user;
+    const { title } = req.body.user;
     const imagePath = req.file ? `/imgs/${req.file.filename}` : "";
     const user = new Users({
       fullname,
@@ -54,7 +54,7 @@ export const updateUserById = async (req, res, next) => {
         status: "Not Found",
       });
     }
-    const { fullname, description, imags, twitter, linkedin } = req.body;
+    const { title } = req.body;
     const newUserData = {
       ...user._doc,
       fullname,
