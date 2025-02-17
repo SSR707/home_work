@@ -1,11 +1,9 @@
 import express from "express";
 import mongoose from "mongoose";
 import { userRoutes } from "./src/routes/users.routes.js";
-import path from 'path'
 import cors from "cors";
 
 const app = express();
-app.use(express.static(path.join(process.cwd , '../frontend' )));
 app.use(
   cors({
     origin: "http://127.0.0.1:5500",
