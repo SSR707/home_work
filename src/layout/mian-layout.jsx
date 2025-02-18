@@ -4,7 +4,6 @@ import { request } from "../config/request";
 
 const getUser = (setData) => {
   request.get("/users").then((res) => {
-    console.log(res.data);
     setData(res.data.users);
   });
 };
