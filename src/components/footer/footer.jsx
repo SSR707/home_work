@@ -116,7 +116,7 @@ export const Footer = () => {
                 <h3 className="font-light text-[14px] leading-[114%] text-[white] text-start">
                   Боғланиш
                 </h3>
-                <div className=" flex gap-[23px]">
+                <div className=" flex gap-[23px]" id="contact">
                   <p className=" font-light text-[16px] leading-[100%] text-[white] mt-[11px]">
                     +998 90 253 77 53
                   </p>
@@ -125,7 +125,7 @@ export const Footer = () => {
                   </p>
                 </div>
               </li>
-              <li>
+              <li id="bizhaqimizda">
                 <h3 className="font-light text-[14px] leading-[114%] text-[white] text-start">
                   Биз қабул қиламиз
                 </h3>

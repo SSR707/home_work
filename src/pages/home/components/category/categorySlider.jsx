@@ -6,12 +6,12 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { CategoryCard } from "./categoryCard";
 
-import rukunlarBg1 from "../../assets/rukunlar__bg-1.svg";
-import rukunlarBg2 from "../../assets/rukunlar__bg-2.svg";
-import rukunlarBg3 from "../../assets/rukunlar__bg-3.svg";
-import rukunlarBg4 from "../../assets/rukunlar__bg-4.svg";
-import rukunlarBg5 from "../../assets/rukunlar__bg-5.svg";
-import rukunlarBg6 from "../../assets/rukunlar__bg-6.svg";
+import rukunlarBg1 from "../../../../assets/rukunlar__bg-1.svg";
+import rukunlarBg2 from "../../../../assets/rukunlar__bg-2.svg";
+import rukunlarBg3 from "../../../../assets/rukunlar__bg-3.svg";
+import rukunlarBg4 from "../../../../assets/rukunlar__bg-4.svg";
+import rukunlarBg5 from "../../../../assets/rukunlar__bg-5.svg";
+import rukunlarBg6 from "../../../../assets/rukunlar__bg-6.svg";
 
 const card = [
   {

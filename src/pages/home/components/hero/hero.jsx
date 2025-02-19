@@ -1,9 +1,9 @@
-import heroBtnIcon from "../../assets/hero__btn-icon.svg";
-import bgImg from "../../assets/hero__bg.svg";
-import CardBgImg from "../../assets/hero__img.svg";
+import heroBtnIcon from "../../../../assets/hero__btn-icon.svg";
+import bgImg from "../../../../assets/hero__bg.svg";
+import CardBgImg from "../../../../assets/hero__img.svg";
 import { HeroSlider } from "./heroSlider";
 import "./slider.css";
-import { Button } from "../ui/button";
+import { Button } from "../../../../components/ui/button";
 
 export const Hero = () => {
   return (

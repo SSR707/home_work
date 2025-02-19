@@ -6,13 +6,22 @@ import headerSelectIcon2 from "../../assets/header_select_icon.svg";
 import headerSelectIcon1 from "../../assets/header__select-icon.svg";
 import headerSelectIconUz from "../../assets/header__lenguge-1.svg";
 import { Button } from "../ui/button";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 export const Header = () => {
+  const [input, setInput] = useState("");
+  const submit = (e) => {
+    e.preventDefault();
+    setInput("");
+  };
   return (
     <div className="container">
       <div className=" flex items-center gap-[64px] pb-[21px] ">
         <div className=" flex gap-[46px]">
           <div className="">
-            <img src={headerImg} alt="" />
+            <Link to={"/"}>
+              <img src={headerImg} alt="mg" />
+            </Link>
           </div>
 
           <div className=" flex items-center gap-[4px]">
@@ -32,16 +41,21 @@ export const Header = () => {
               </span>
             </div>
 
-            <div className=" flex relative">
+            <form className=" flex relative">
               <input
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
                 className=" py-[10px] pl-[29px] pr-[100px] w-[555px] border-2 border-[#e1e1e1] rounded-r-[14px] text-[17px] focus:outline-none "
                 type="text"
                 placeholder="Qidirish"
               />
-              <button className=" absolute right-0 top-1/2 transform -translate-y-1/2 pl-[19px] pr-[27px] py-[10px] border-l-2 border-[#e1e1e1] ">
+              <button
+                onClick={submit}
+                className=" absolute right-0 top-1/2 transform -translate-y-1/2 pl-[19px] pr-[27px] py-[10px] border-l-2 border-[#e1e1e1] "
+              >
                 <img src={headerSearchIcon} alt="" />
               </button>
-            </div>
+            </form>
           </div>
         </div>
         <div className=" flex items-center gap-[20px]">
@@ -76,16 +90,13 @@ export const Header = () => {
           <li>
             <a
               className="font-semibold text-[16px] text-[var(--primary)]"
-              href=""
+              href="#electron_kotib"
             >
               Аудиокитоб
             </a>
           </li>
           <li>
-            <a
-              className="font-semibold text-[16px] text-[var(--primary)]"
-              href=""
-            >
+            <a className="font-semibold text-[16px] text-[var(--primary)]">
               Электрон китоблар
             </a>
           </li>
@@ -100,7 +111,7 @@ export const Header = () => {
           <li>
             <a
               className="font-semibold text-[16px] text-[var(--primary)]"
-              href=""
+              href="#contact"
             >
               Контакт
             </a>
@@ -108,7 +119,7 @@ export const Header = () => {
           <li>
             <a
               className="font-semibold text-[16px] text-[var(--primary)]"
-              href=""
+              href="#bizhaqimizda"
             >
               Биз хақимизда
             </a>
