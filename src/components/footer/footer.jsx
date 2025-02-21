@@ -9,10 +9,15 @@ import {
 } from "@mui/material";
 
 import footerBtnIcon from "../../assets/footerBtnIcon.svg";
+import phoneIcon from "../../assets/phoneIcon.svg";
+import emailIcon from "../../assets/emailIcon.svg";
+import whatSapIcon from "../../assets/whatSapIcon.svg";
+import instagramIcon from "../../assets/instagramIcon.svg";
+import facebook from "../../assets/facebook.svg";
 
 export const Footer = () => {
   return (
-    <Box>
+    <Box backgroundColor={"#f2f2f2;"} padding={"50px 108px"}>
       <Container>
         <Box display={"flex"} gap={"66px"}>
           <Box
@@ -244,10 +249,14 @@ export const Footer = () => {
                 color: "#1D1D1D",
                 textDecoration: "none",
                 opacity: "50%",
+                display: "flex",
+                alignItems: "center",
+                gap: "11px",
               }}
               href="#"
               display="block"
             >
+              <img src={phoneIcon} alt="" />
               +7 775 657 66 76
             </Link>
             <Link
@@ -257,16 +266,38 @@ export const Footer = () => {
                 color: "#1D1D1D",
                 textDecoration: "none",
                 opacity: "50%",
+                display: "flex",
+                alignItems: "center",
+                gap: "11px",
               }}
               href="#"
               display="block"
             >
+              <img src={emailIcon} alt="" />
               nfo@kilem.kz
             </Link>
-            <Box display={"flex"}>
-              <Link>O</Link>
-              <Link>O</Link>
-              <Link>O</Link>
+            <Box display={"flex"} gap={"20px"}>
+              <Link>
+                <img
+                  src={whatSapIcon}
+                  alt=""
+                  style={{ opacity: "100%", width: "20px", height: "20px" }}
+                />
+              </Link>
+              <Link>
+                <img
+                  src={instagramIcon}
+                  alt=""
+                  style={{ opacity: "100%", width: "20px", height: "20px" }}
+                />
+              </Link>
+              <Link>
+                <img
+                  src={facebook}
+                  alt=""
+                  style={{ opacity: "100%", width: "20px", height: "20px" }}
+                />
+              </Link>
             </Box>
           </Box>
           <Box sx={{ display: "flex", flexDirection: "column", gap: "16px" }}>
@@ -285,15 +316,32 @@ export const Footer = () => {
             <Typography variant="p">
               Подпишитесь, чтобы всегда быть в курсе наших новый акций
             </Typography>
-            <Box display={"flex"}>
+            <Box
+              display="flex"
+              border="2px solid #ccc"
+              borderRadius="10px"
+              overflow="hidden"
+            >
               <TextField
                 id="outlined-basic"
                 label="Ваш email"
                 variant="outlined"
-                sx={{ width: "200px" }}
+                sx={{
+                  width: "200px",
+                  borderRight: "2px solid #ccc",
+                  "& fieldset": { border: "none" },
+                }}
               />
               <Button
-                sx={{ borderRadius: "0 10px 10px 0", padding: "16px 15px" }}
+                sx={{
+                  borderRadius: "0 0",
+                  padding: "16px 15px",
+                  backgroundColor: "#1976d2",
+                  color: "#fff",
+                  "&:hover": {
+                    backgroundColor: "#1565c0",
+                  },
+                }}
                 variant="contained"
               >
                 <img src={footerBtnIcon} alt="" />
