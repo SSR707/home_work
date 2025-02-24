@@ -29,10 +29,12 @@ export const findOneUser = async (req, res, next) => {
 
 export const createUser = async (req, res, next) => {
   try {
-    const { title } = req.body;
-    const imagePath = req.file ? `/imgs/${req.file.filename}` : "";
+    const { name, age, email, address } = req.body;
     const user = new Users({
-      title
+      name,
+      age,
+      email,
+      address,
     });
     await user.save();
     return res.status(201).send({ message: "Created", user: user.id });
@@ -50,10 +52,13 @@ export const updateUserById = async (req, res, next) => {
         status: "Not Found",
       });
     }
-    const { title } = req.body;
+    const { name, age, email, address } = req.body;
     const newUserData = {
       ...user._doc,
-      title
+      name,
+      age,
+      email,
+      address,
     };
     const updatedUser = await Users.findByIdAndUpdate(id, newUserData);
     return res

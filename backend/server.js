@@ -6,10 +6,7 @@ import cors from "cors";
 const app = express();
 app.use(
   cors({
-    origin: [
-      "https://home-work-besic-todo-task.netlify.app",
-      "http://localhost:5173",
-    ],
+    origin: '*'
   })
 );
 app.use(express.json());
