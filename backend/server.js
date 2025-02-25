@@ -2,17 +2,18 @@ import express from "express";
 import mongoose from "mongoose";
 import { userRoutes } from "./src/routes/users.routes.js";
 import cors from "cors";
+import { authRouter } from "./src/routes/auth.routes.js";
 
 const app = express();
 app.use(
   cors({
-    origin: '*'
+    origin: "*",
   })
 );
 app.use(express.json());
 
 app.use("/users", userRoutes);
-
+app.use("/auth", authRouter);
 app.listen(3333, async () => {
   await mongoose.connect(
     "mongodb+srv://samandar:saman77071!@mongodb-demo.6k1pd.mongodb.net/user-crud"

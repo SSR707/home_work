@@ -29,12 +29,13 @@ export const findOneUser = async (req, res, next) => {
 
 export const createUser = async (req, res, next) => {
   try {
-    const { name, age, email, address } = req.body;
+    const { name, age, email, address, password } = req.body;
     const user = new Users({
       name,
       age,
       email,
       address,
+      password,
     });
     await user.save();
     return res.status(201).send({ message: "Created", user: user.id });
@@ -52,18 +53,19 @@ export const updateUserById = async (req, res, next) => {
         status: "Not Found",
       });
     }
-    const { name, age, email, address } = req.body;
+    const { name, age, email, address ,password} = req.body;
     const newUserData = {
       ...user._doc,
       name,
       age,
       email,
       address,
+      password
     };
     const updatedUser = await Users.findByIdAndUpdate(id, newUserData);
     return res
       .status(200)
-      .send({ message: "Success", user_id: updatedUser._id });
+      .send({ status: 200, message: "Success", user_id: updatedUser._id });
   } catch (error) {
     next(error);
   }
