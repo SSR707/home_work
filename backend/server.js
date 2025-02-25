@@ -5,14 +5,7 @@ import cors from "cors";
 import { authRouter } from "./src/routes/auth.routes.js";
 
 const app = express();
-app.use(
-  cors({
-    origin: "*",
-    methods: "GET,POST,PUT,DELETE,OPTIONS",
-    allowedHeaders: "*",
-  })
-);
-app.options("*", cors());
+app.use(cors());
 
 app.use(express.json());
 
