@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+:root {
+  --font-primary: "Lato", sans-serif;
+  --primary: #0e8f72;
+  --white-1000: #fff;
+  --primary-variant: #019e7f;
+  --stroke: #f2f2f2;
+  --bg: #f7f7f7;
+  --text-title: #0d1136;
+  --inputbg: #f1f1f1;
+  --text-2: #606060;
+  --greyinactive: #9e9e9e;
+  --red: #f34336;
+  --arrows: #323232;
+  --hr-line: #dbdbdb;
+  --hr-l: #dbdbdb;
+  --orange: #f3a736;
+  --alert-info: #0c5460;
+}
+
+@theme inline {
+}
+
+.container {
+  max-width: 1440px;
+  padding-left: 50px;
+  padding-right: 50px;
+  margin-right: auto;
+  margin-left: auto;
+}
