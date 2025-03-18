@@ -2,12 +2,12 @@ import React from "react";
 import headerIcon from "../../../public/header_icon.svg";
 import CallIcon from "../../../public/call_icon.svg";
 import CardSvg from "../../../public/card_icon.svg";
-import UzbFlag from "../../../public/uz-flag.svg";
-import DownIcon from "../../../public/down_icon.svg";
 import ProfileIcon from "../../../public/profile_icon.svg";
 import SearchIcon from "../../../public/search_icon.svg";
 import Link from "next/link";
 import { LikeBtnCustom } from "../like_btn/like-btn";
+import { LanguageBtn } from "../language-btn/language-btn";
+import { SingInBtn } from "../signin-btn/signin-btn";
 
 const Header = () => {
   return (
@@ -43,15 +43,12 @@ const Header = () => {
                 </button>
               </div>
               <div className="flex items-center gap-[22px]">
-                <button className=" flex items-center border-1 border-[var(--inputbg)] py-[9px] pr-[12px] pl-[16px]  rounded-[6px] gap-[8px]  font-normal text-[15px] text-[var(--primary-variant)]">
-                  <img src={UzbFlag.src} alt="" />
-                  Uz / UZS
-                  <img src={DownIcon.src} alt="" width={24} height={24} />
-                </button>
-                <Link href={"/profile/account"} className="cursor-pointer">
+                {/* <LanguageBtn /> */}
+                {/* <Link href={"/profile/account"} className="cursor-pointer">
                   <img src={ProfileIcon.src} alt="" width={24} height={24} />
-                </Link>
+                  </Link> */}
                 <LikeBtnCustom />
+                  <SingInBtn />
               </div>
             </div>
           </div>

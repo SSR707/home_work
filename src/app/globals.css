@@ -19,8 +19,6 @@
   --alert-info: #0c5460;
 }
 
-@theme inline {
-}
 
 .container {
   max-width: 1440px;
