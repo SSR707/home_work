@@ -6,8 +6,8 @@ import UzbFlag from "../../../public/uz-flag.svg";
 import DownIcon from "../../../public/down_icon.svg";
 import ProfileIcon from "../../../public/profile_icon.svg";
 import SearchIcon from "../../../public/search_icon.svg";
-import Like from "../../../public/headerLike.svg";
 import Link from "next/link";
+import { LikeBtnCustom } from "../like_btn/like-btn";
 
 const Header = () => {
   return (
@@ -51,9 +51,7 @@ const Header = () => {
                 <Link href={"/profile/account"} className="cursor-pointer">
                   <img src={ProfileIcon.src} alt="" width={24} height={24} />
                 </Link>
-                <Link href={"/like"} className="cursor-pointer">
-                  <img src={Like.src} alt="" width={22} height={22} />
-                </Link>
+                <LikeBtnCustom />
               </div>
             </div>
           </div>
