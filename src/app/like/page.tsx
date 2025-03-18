@@ -10,7 +10,7 @@ interface IProduct {
   price: string;
   new_price: string;
   img: string;
-  skidka: number | undefined;
+  skidka?: number | undefined;
 }
 
 const LikePage = () => {
