@@ -18,7 +18,7 @@ import KaramImg from "../../../public/product_img-5.svg";
 import PecheniImg from "../../../public/product_img-6.svg";
 import LimonImg from "../../../public/product_img-7.svg";
 
-export const Product = [
+export const Product1 = [
   {
     id: 1,
     img: FantImg.src,
@@ -73,6 +73,69 @@ export const Product = [
   },
   {
     id: 8,
+    img: LimonImg.src,
+    title: "Limon",
+    price: "1,800",
+    new_price: "1,000",
+  },
+];
+
+
+export const Product2 = [
+  {
+    id: 9,
+    img: FantImg.src,
+    title: "Fanta",
+    price: "8,800",
+    new_price: "7,090",
+  },
+  {
+    id: 10,
+    img: FeleImg.src,
+    title: "Tovuq Felesi",
+    price: "9,800",
+    new_price: "8,090",
+    skidka: 20,
+  },
+  {
+    id: 11,
+    img: GoshtImg.src,
+    title: "Qo'y bo'yin (muzlatilgan)",
+    price: "10,800",
+    new_price: "5,090",
+    skidka: 20,
+  },
+  {
+    id: 12,
+    img: KaetoshkaImg.src,
+    title: "Kartoshka",
+    price: "5,800",
+    new_price: "4,090",
+    skidka: 20,
+  },
+  {
+    id: 13,
+    img: KaramImg.src,
+    title: "GUl Karama",
+    price: "6,800",
+    new_price: "2,090",
+  },
+  {
+    id: 14,
+    img: FantImg.src,
+    title: "Fanta",
+    price: "8,800",
+    new_price: "7,090",
+  },
+  {
+    id: 15,
+    img: PecheniImg.src,
+    title: "Pechenik",
+    price: "7,800",
+    new_price: "6,090",
+  },
+  {
+    id: 16,
     img: LimonImg.src,
     title: "Limon",
     price: "1,800",

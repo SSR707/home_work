@@ -1,13 +1,15 @@
 import React from "react";
-import ProductImg from "../../../public/product_img-1.svg";
 import KorzinkaIcon from "../../../public/korzinka_icon.svg";
+import { LikeBtn } from "../like-btn/like-btn";
 export const ProductCard = ({
+  id,
   name,
   price,
   newPrice,
   img,
   skidka,
 }: {
+  id:number,
   name: string;
   price: string;
   newPrice: string;
@@ -19,6 +21,7 @@ export const ProductCard = ({
       <div>
         <img src={img} alt="" />
       </div>
+      <LikeBtn id={id} />
       {skidka ? (
         <div className=" absolute px-[8px] py-[5px] top-[15px] left-[15px] bg-[#ff7a50] rounded-[6px] shadow-2xs">
           <p className=" font-normal text-[14px] text-[var(--white-1000)]">

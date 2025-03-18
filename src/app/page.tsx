@@ -1,5 +1,5 @@
 import { CategoryButton } from "@/components/_category/category";
-import { CategoryData, Product } from "./_data/data";
+import { CategoryData, Product1, Product2 } from "./_data/data";
 import TelefonIcon from "../../public/phone_icon.svg";
 import NewIcon from "../../public/new_icon .svg";
 import DefaultIcon from "../../public/dafault_icon.svg";
@@ -36,8 +36,9 @@ export default function Home() {
                 Yangi
               </h3>
               <div className="pt-[20px] grid grid-cols-4 gap-x-2 gap-y-3 mt-[36px]">
-                {Product.map((item) => (
+                {Product1.map((item) => (
                   <ProductCard
+                    id={item.id}
                     key={item.id}
                     name={item.title}
                     price={item.price}
@@ -54,8 +55,9 @@ export default function Home() {
                 Ommabop mahsulotlar
               </h3>
               <div className="pt-[20px] grid grid-cols-4 gap-x-2 gap-y-3 mt-[36px]">
-                {Product.map((item) => (
+                {Product2.map((item) => (
                   <ProductCard
+                    id={item.id}
                     key={item.id}
                     name={item.title}
                     price={item.price}

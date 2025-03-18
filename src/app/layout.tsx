@@ -3,6 +3,7 @@ import { Lato } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/footer/footer";
 import Header from "@/components/header/header";
+import { ReduxProvider } from "@/providers/redux-provider";
 
 const latoFont = Lato({
   variable: "--font-sans-serif",
@@ -21,16 +22,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${latoFont.variable} antialiased`}>
-        <div className="min-h-screen , flex flex-col justify-between">
-          <div>
-            <Header />
-            {children}
+    <ReduxProvider>
+      <html lang="en">
+        <body className={`${latoFont.variable} antialiased`}>
+          <div className="min-h-screen , flex flex-col justify-between">
+            <div>
+              <Header />
+              {children}
+            </div>
+            <Footer />
           </div>
-          <Footer />
-        </div>
-      </body>
-    </html>
+        </body>
+      </html>
+    </ReduxProvider>
   );
 }
