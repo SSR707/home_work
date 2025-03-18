@@ -18,7 +18,7 @@ import KaramImg from "../../../public/product_img-5.svg";
 import PecheniImg from "../../../public/product_img-6.svg";
 import LimonImg from "../../../public/product_img-7.svg";
 
-export const Product1 = [
+export const Product = [
   {
     id: 1,
     img: FantImg.src,
@@ -78,10 +78,6 @@ export const Product1 = [
     price: "1,800",
     new_price: "1,000",
   },
-];
-
-
-export const Product2 = [
   {
     id: 9,
     img: FantImg.src,
