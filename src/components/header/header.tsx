@@ -8,8 +8,11 @@ import Link from "next/link";
 import { LikeBtnCustom } from "../like_btn/like-btn";
 import { LanguageBtn } from "../language-btn/language-btn";
 import { SingInBtn } from "../signin-btn/signin-btn";
+import { cookies } from "next/headers";
 
-const Header = () => {
+const Header = async () => {
+  const userToken = cookies();
+  const token = (await userToken).get("token");
   return (
     <header className="shadow-md sticky top-0 z-50 bg-[var(--white-1000)]">
       <div className=" container">
@@ -43,12 +46,21 @@ const Header = () => {
                 </button>
               </div>
               <div className="flex items-center gap-[22px]">
-                {/* <LanguageBtn /> */}
-                {/* <Link href={"/profile/account"} className="cursor-pointer">
-                  <img src={ProfileIcon.src} alt="" width={24} height={24} />
-                  </Link> */}
+                {token ? (
+                  <>
+                    <LanguageBtn />
+                    <Link href={"/profile/account"} className="cursor-pointer">
+                      <img
+                        src={ProfileIcon.src}
+                        alt=""
+                        width={24}
+                        height={24}
+                      />
+                    </Link>
+                  </>
+                ) : null}
                 <LikeBtnCustom />
-                  <SingInBtn />
+                {token ? null : <SingInBtn />}
               </div>
             </div>
           </div>

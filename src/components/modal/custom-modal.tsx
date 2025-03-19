@@ -5,7 +5,9 @@ export const CustomModal = ({
   children,
   open,
   onClose,
+  titleText,
 }: {
+  titleText: string;
   children?: any;
   open?: boolean;
   onClose?: () => void;
@@ -26,7 +28,7 @@ export const CustomModal = ({
           </button>
         </div>
         <div className="text-center px-[30px]">
-          <h2 className="text-[#000] text-4xl font-bold">Kirish</h2>
+          <h2 className="text-[#000] text-4xl font-bold">{titleText}</h2>
           {children}
         </div>
       </div>
