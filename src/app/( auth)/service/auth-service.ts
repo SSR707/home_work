@@ -3,12 +3,12 @@ import { cookies } from "next/headers";
 
 import { IInputLogin } from "../_login/login";
 export interface IInput {
-    name: string;
-    email: string;
-    password: string;
-  }
+  name: string;
+  email: string;
+  password: string;
+}
 
-const url = "  http://localhost:3000";
+const url = "http://localhost:3000";
 interface resLogin {
   accessToken: string;
   user: {

@@ -59,7 +59,9 @@ const Register = ({ onRegisterSuccess }: { onRegisterSuccess: () => void }) => {
           placeholder="Ismingizni kiriting..."
         />
         {errors.name && (
-          <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+          <p className="text-red-500 text-sm mt-1 text-start">
+            {errors.name.message}
+          </p>
         )}
         <input
           type="text"
@@ -74,7 +76,9 @@ const Register = ({ onRegisterSuccess }: { onRegisterSuccess: () => void }) => {
           placeholder="Email kiriting..."
         />
         {errors.email && (
-          <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+          <p className="text-red-500 text-sm mt-1 text-start">
+            {errors.email.message}
+          </p>
         )}
         <input
           type="password"
@@ -90,7 +94,9 @@ const Register = ({ onRegisterSuccess }: { onRegisterSuccess: () => void }) => {
           placeholder="Parol kiriting..."
         />
         {errors.password && (
-          <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
+          <p className="text-red-500 text-sm mt-1 text-start">
+            {errors.password.message}
+          </p>
         )}
         <input
           type="password"
@@ -103,7 +109,7 @@ const Register = ({ onRegisterSuccess }: { onRegisterSuccess: () => void }) => {
           placeholder="Parol tastiqlan kiriting..."
         />
         {errors.confirm_password && (
-          <p className="text-red-500 text-sm mt-1">
+          <p className="text-red-500 text-sm mt-1 text-start">
             {errors.confirm_password.message}
           </p>
         )}

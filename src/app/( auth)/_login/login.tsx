@@ -25,7 +25,7 @@ const Login = ({ onLoginSuccess }: { onLoginSuccess: () => void }) => {
         onLoginSuccess();
       } catch (error) {
         const err = error as Error;
-        console.log(err)
+        console.log(err);
         if (err.name === "email") {
           setError("email", {
             message: "email xato",
@@ -59,7 +59,9 @@ const Login = ({ onLoginSuccess }: { onLoginSuccess: () => void }) => {
           placeholder="Email kiriting ..."
         />
         {errors.email && (
-          <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+          <p className="text-red-500 text-sm mt-1 text-start">
+            {errors.email.message}
+          </p>
         )}
         <input
           type="password"
@@ -69,7 +71,7 @@ const Login = ({ onLoginSuccess }: { onLoginSuccess: () => void }) => {
           placeholder="Parol kiriting ..."
         />
         {errors.password && (
-          <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
+          <p className="text-red-500 text-sm mt-1 text-start">{errors.password.message}</p>
         )}
         <button className="bg-[var(--primary)] w-[100%] mt-[25px] rounded-[4px]  py-[10px] px-[10px] text-[20px] text-[var(--white-1000)] font-semibold cursor-pointer">
           Kirish

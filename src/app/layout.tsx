@@ -4,6 +4,8 @@ import "./globals.css";
 import Footer from "@/components/footer/footer";
 import Header from "@/components/header/header";
 import { ReduxProvider } from "@/providers/redux-provider";
+import { SessionProvider } from "next-auth/react";
+import AppProvider from "@/providers/app-provider";
 
 const latoFont = Lato({
   variable: "--font-sans-serif",
@@ -22,18 +24,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ReduxProvider>
-      <html lang="en">
+   <AppProvider>
+          <html lang="en">
         <body className={`${latoFont.variable} antialiased`}>
-          <div className="min-h-screen , flex flex-col justify-between">
-            <div>
-              <Header />
-              {children}
+            <div className="min-h-screen , flex flex-col justify-between">
+              <div>
+                <Header />
+                {children}
+              </div>
+              <Footer />
             </div>
-            <Footer />
-          </div>
         </body>
       </html>
-    </ReduxProvider>
+   </AppProvider>
+
+
   );
 }
