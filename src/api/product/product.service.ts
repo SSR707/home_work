@@ -8,12 +8,15 @@ import { UpdateProductDto } from './dto/update-product.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ProductEntity } from 'src/core/entity/product.entity';
 import { Repository } from 'typeorm';
+import { FileService } from 'src/infrastructure/lib/file';
+import { config } from 'src/config';
 
 @Injectable()
 export class ProductService {
   constructor(
     @InjectRepository(ProductEntity)
     private productRepository: Repository<ProductEntity>,
+    private readonly fileService: FileService,
   ) {}
   async create(createProductDto: CreateProductDto) {
     try {
@@ -31,7 +34,7 @@ export class ProductService {
 
   async findAll() {
     const products = await this.productRepository.find({
-      relations: ['categoty'],
+      relations: ['category'],
     });
     return {
       status_code: 200,
@@ -41,7 +44,10 @@ export class ProductService {
   }
 
   async findOne(id: string) {
-    const product = await this.productRepository.findOne({ where: { id } });
+    const product = await this.productRepository.findOne({
+      where: { id },
+      relations: ['category'],
+    });
     if (!product) {
       throw new NotFoundException(`Product with id ${id} not found.`);
     }
@@ -50,6 +56,47 @@ export class ProductService {
       message: 'success',
       data: product,
     };
+  }
+
+  async uploadImg(id: string, file: Express.Multer.File) {
+    try {
+      const currentProduct = await this.productRepository.findOne({
+        where: { id },
+      });
+      if (!currentProduct) {
+        throw new NotFoundException(`Product with id ${id} not found.`);
+      }
+      const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
+      if (!allowedMimeTypes.includes(file.mimetype)) {
+        throw new BadRequestException(
+          'Only JPG, PNG and GIF files are allowed',
+        );
+      }
+      const imageUrl = currentProduct.picture
+        ? currentProduct.picture.replace(`${config.API_URL}/`, '')
+        : '';
+
+      if (await this.fileService.existFile(imageUrl)) {
+        await this.fileService.deleteFile(imageUrl);
+      }
+      const uploadImg = await this.fileService.uploadFile(file, 'products');
+
+      const imgPath = config.API_URL + '/' + uploadImg.path;
+      await this.productRepository.update(currentProduct.id, {
+        picture: imgPath,
+        updated_at: Date.now(),
+      });
+      return {
+        status_code: 200,
+        message: 'success',
+        data: {
+          image_url: imgPath,
+        },
+      };
+    } catch (error) {
+      console.log(error);
+      throw new BadRequestException(`Error uploading image: ${error.message}`);
+    }
   }
 
   async update(id: string, updateProductDto: UpdateProductDto) {

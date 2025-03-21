@@ -1,10 +1,23 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+  UseInterceptors,
+  UploadedFile,
+  BadRequestException,
+} from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiConsumes } from '@nestjs/swagger';
 import { AdminGuard } from 'src/common/guard';
 import { Public } from 'src/common/decorator/auth.decorator';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('product')
 export class ProductController {
@@ -23,6 +36,31 @@ export class ProductController {
     return this.productService.findAll();
   }
 
+  @UseGuards(AdminGuard)
+  @ApiBearerAuth()
+  @Post('upload-img')
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        file: {
+          type: 'string',
+          format: 'binary',
+        },
+      },
+    },
+  })
+  @UseInterceptors(FileInterceptor('file'))
+  uploadImg(
+    @Param('id') id: string,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    if (!file) {
+      throw new BadRequestException('No file uploaded');
+    }
+    return this.productService.uploadImg(id, file);
+  }
 
   @Public()
   @Get(':id')

@@ -11,6 +11,7 @@ export type ConfigType = {
   ACCESS_TOKEN_TIME: string;
   REFRESH_TOKEN_KEY: string;
   REFRESH_TOKEN_TIME: string;
+  API_URL: string
 };
 
 const requiredVariables = [
@@ -21,6 +22,8 @@ const requiredVariables = [
   'ACCESS_TOKEN_TIME',
   'REFRESH_TOKEN_KEY',
   'REFRESH_TOKEN_TIME',
+  'LOCAL_API',
+  'SERVER_API',
 ];
 
 const missingVariables = requiredVariables.filter((varebels) => {
@@ -46,4 +49,8 @@ export const config: ConfigType = {
   ACCESS_TOKEN_TIME: process.env.ACCESS_TOKEN_TIME as string,
   REFRESH_TOKEN_KEY: process.env.REFRESH_TOKEN_KEY as string,
   REFRESH_TOKEN_TIME: process.env.REFRESH_TOKEN_TIME as string,
+  API_URL:
+    process.env.NODE_ENV === 'dev'
+      ? (process.env.LOCAL_API as string)
+      : (process.env.SERVER_API as string)
 };

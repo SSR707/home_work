@@ -7,11 +7,16 @@ import {
   Param,
   Delete,
   UseGuards,
+  UseInterceptors,
+  UploadedFile,
+  BadRequestException,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { AdminGuard } from 'src/common/guard';
+import { UserID } from 'src/common/decorator/user-id.decorator';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @ApiBearerAuth()
 @ApiTags('User Api')
@@ -38,5 +43,26 @@ export class UserController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.userService.remove(id);
+  }
+
+  @Post('upload-img')
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        file: {
+          type: 'string',
+          format: 'binary',
+        },
+      },
+    },
+  })
+  @UseInterceptors(FileInterceptor('file'))
+  uploadImg(@UserID() id: string, @UploadedFile() file: Express.Multer.File) {
+    if (!file) {
+      throw new BadRequestException('No file uploaded');
+    }
+    return this.userService.uploadImg(id , file);
   }
 }

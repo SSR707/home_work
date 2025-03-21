@@ -5,9 +5,19 @@ import {
   IsOptional,
   IsPositive,
   IsString,
+  IsUUID,
 } from 'class-validator';
 
 export class CreateProductDto {
+  @ApiProperty({
+    type: String,
+    description: 'Category id',
+    example: 'd3b2b2b7-1b5e-4c5d-8f4d-2b2b2b7b1e4c',
+  })
+  @IsNotEmpty()
+  @IsUUID()
+  category_id: string;
+
   @ApiProperty({
     type: String,
     description: 'Title of Product',

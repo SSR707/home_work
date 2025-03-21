@@ -8,12 +8,15 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from 'src/core/entity/user.entity';
 import { Repository } from 'typeorm';
 import { BcryptEncryption } from 'src/infrastructure/lib/bcrypt/bcrypt';
+import { FileService } from 'src/infrastructure/lib/file';
+import { config } from 'src/config';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>,
+    private readonly fileService: FileService,
   ) {}
   async findAll() {
     const users = await this.userRepository.find({
@@ -28,7 +31,10 @@ export class UserService {
   }
 
   async findOne(id: string) {
-    const user = await this.userRepository.findOne({ where: { id } , relations: ['address'] });
+    const user = await this.userRepository.findOne({
+      where: { id },
+      relations: ['address'],
+    });
     if (!user) {
       throw new NotFoundException(`User with id ${id} not found.`);
     }
@@ -37,6 +43,51 @@ export class UserService {
       message: 'success',
       data: user,
     };
+  }
+
+  async uploadImg(id: string, file: Express.Multer.File) {
+    try {
+      if (!id || !file) {
+        throw new BadRequestException('Debtor ID and file are required');
+      }
+      const currentUser = await this.userRepository.findOne({ where: { id } });
+      if (!currentUser) {
+        throw new NotFoundException(`User with id ${id} not found.`);
+      }
+
+      const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
+      if (!allowedMimeTypes.includes(file.mimetype)) {
+        throw new BadRequestException(
+          'Only JPG, PNG and GIF files are allowed',
+        );
+      }
+
+      const imageUrl = currentUser.avatar.replace(`${config.API_URL}/`, '');
+      if (await this.fileService.existFile(imageUrl)) {
+        await this.fileService.deleteFile(imageUrl);
+      }
+
+      const uploadedFile = await this.fileService.uploadFile(file, 'users');
+
+      if (!uploadedFile || !uploadedFile.path) {
+        throw new BadRequestException('Failed to upload image');
+      }
+      const pathImg = config.API_URL + '/' + uploadedFile.path;
+      await this.userRepository.update(id, {
+        avatar: pathImg,
+        updated_at: Date.now(),
+      });
+
+      return {
+        status_code: 200,
+        message: 'Image uploaded successfully',
+        data: {
+          image_url: pathImg,
+        },
+      };
+    } catch (error) {
+      throw new BadRequestException(`Error uploading image: ${error.message}`);
+    }
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {

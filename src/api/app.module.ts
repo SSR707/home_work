@@ -11,6 +11,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { JwtGuard } from 'src/common/guard';
 import { CategoryModule } from './category/category.module';
 import { ProductModule } from './product/product.module';
+import { FileModule } from 'src/infrastructure/lib/file';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -45,6 +46,7 @@ import { ProductModule } from './product/product.module';
     CustomJwtModule,
     EmailModule,
     UserModule,
+    FileModule,
     CategoryModule,
     ProductModule,
   ],

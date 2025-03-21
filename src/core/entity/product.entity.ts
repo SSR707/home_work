@@ -1,13 +1,10 @@
 import { BaseEntity } from 'src/common/database/BaseEntity';
-import { Column, Entity, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 import { CategoryEntity } from './category.entity';
 @Entity('product')
 export class ProductEntity extends BaseEntity {
   @Column({ type: 'uuid', name: 'category_id', nullable: true })
   category_id: string;
-
-  @ManyToOne(() => CategoryEntity, (categoty) => categoty.products)
-  category: CategoryEntity;
 
   @Column({ type: 'varchar', name: 'title', nullable: true })
   title: string;
@@ -38,4 +35,8 @@ export class ProductEntity extends BaseEntity {
 
   @Column({ type: 'varchar', name: 'tags', nullable: true })
   tags: string;
+
+  @ManyToOne(() => CategoryEntity, (categoty) => categoty.products)
+  @JoinColumn({ name: 'category_id' })
+  category: CategoryEntity;
 }

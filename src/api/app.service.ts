@@ -4,6 +4,8 @@ import { AppModule } from './app.module';
 import { config } from 'src/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as cors from 'cors';
+import * as path from 'path';
+import * as express from 'express';
 
 @Injectable()
 export default class Application {
@@ -16,6 +18,15 @@ export default class Application {
         allowedHeaders: ['Content-Type', 'Authorization'],
         credentials: true,
       }),
+    );
+    app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
+    app.use(
+      '/uploads/users',
+      express.static(path.join(process.cwd(), 'uploads', 'users')),
+    );
+    app.use(
+      '/uploads/products',
+      express.static(path.join(process.cwd(), 'uploads', 'products')),
     );
     const api = 'api/v1';
     const swaggerApi = 'api/docs';

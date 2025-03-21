@@ -62,9 +62,10 @@ export class SignUpUserDto {
   @ApiProperty({
     type: String,
     description: 'User Role',
-    example: 'USER',
     enum: RoleEnum,
     default: RoleEnum.USER,
   })
+  @IsString()
+  @IsOptional()
   role: RoleEnum;
 }

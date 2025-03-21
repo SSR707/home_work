@@ -9,7 +9,7 @@ export class CreateCategoryDto {
   })
   @IsString()
   @IsNotEmpty()
-  title: string;
+  name: string;
 
   @ApiProperty({
     type: String,

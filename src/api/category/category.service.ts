@@ -17,7 +17,7 @@ export class CategoryService {
   ) {}
   async create(createCategoryDto: CreateCategoryDto) {
     try {
-      const category = this.categoryRepository.create({ ...createCategoryDto });
+      const category = this.categoryRepository.create(createCategoryDto);
       this.categoryRepository.save(category);
       return {
         status_code: 201,
