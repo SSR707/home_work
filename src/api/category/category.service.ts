@@ -20,8 +20,8 @@ export class CategoryService {
       const category = this.categoryRepository.create({ ...createCategoryDto });
       this.categoryRepository.save(category);
       return {
-        status_code: 200,
-        message: 'OK',
+        status_code: 201,
+        message: 'Created',
         data: category,
       };
     } catch (error) {
@@ -30,22 +30,27 @@ export class CategoryService {
   }
 
   async findAll() {
-    const categorys = await this.categoryRepository.find();
+    const categorys = await this.categoryRepository.find({
+      relations: ['products'],
+    });
     return {
       status_code: 200,
-      message: 'OK',
+      message: 'success',
       data: categorys,
     };
   }
 
   async findOne(id: string) {
-    const category = await this.categoryRepository.findOne({ where: { id } });
+    const category = await this.categoryRepository.findOne({
+      where: { id },
+      relations: ['products'],
+    });
     if (!category) {
       throw new NotFoundException(`Category with id ${id} not found.`);
     }
     return {
       status_code: 200,
-      message: 'OK',
+      message: 'success',
       data: category,
     };
   }
@@ -64,7 +69,7 @@ export class CategoryService {
       });
       return {
         status_code: 200,
-        message: 'OK',
+        message: 'success',
       };
     } catch (error) {
       throw new BadRequestException(`Error on update categiry: ${error}`);
@@ -82,7 +87,7 @@ export class CategoryService {
       await this.categoryRepository.delete(id);
       return {
         status_code: 200,
-        message: 'OK',
+        message: 'success',
       };
     } catch (error) {
       throw new BadRequestException(`Error on delete   categoiry: ${error}`);

@@ -22,7 +22,7 @@ export class UserService {
     });
     return {
       status_code: 200,
-      message: 'OK',
+      message: 'success',
       data: users,
     };
   }
@@ -34,7 +34,7 @@ export class UserService {
     }
     return {
       status_code: 200,
-      message: 'OK',
+      message: 'success',
       data: user,
     };
   }

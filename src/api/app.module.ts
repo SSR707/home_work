@@ -10,6 +10,7 @@ import { UserModule } from './user/user.module';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtGuard } from 'src/common/guard';
 import { CategoryModule } from './category/category.module';
+import { ProductModule } from './product/product.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -45,6 +46,7 @@ import { CategoryModule } from './category/category.module';
     EmailModule,
     UserModule,
     CategoryModule,
+    ProductModule,
   ],
   controllers: [],
   providers: [{ provide: APP_GUARD, useClass: JwtGuard }],
