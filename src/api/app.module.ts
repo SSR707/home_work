@@ -12,6 +12,7 @@ import { JwtGuard } from 'src/common/guard';
 import { CategoryModule } from './category/category.module';
 import { ProductModule } from './product/product.module';
 import { FileModule } from 'src/infrastructure/lib/file';
+import { AddressModule } from './address/address.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -49,6 +50,7 @@ import { FileModule } from 'src/infrastructure/lib/file';
     FileModule,
     CategoryModule,
     ProductModule,
+    AddressModule,
   ],
   controllers: [],
   providers: [{ provide: APP_GUARD, useClass: JwtGuard }],

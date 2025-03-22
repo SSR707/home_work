@@ -44,7 +44,25 @@ export class UserService {
       data: user,
     };
   }
-
+  async getProfile(id: string) {
+    const user = await this.userRepository.findOne({
+      where: { id },
+      select: {
+        id: true,
+        fullname: true,
+        email: true,
+        avatar: true,
+        phone_number: true,
+        created_at: true,
+        updated_at: true,
+      },
+    });
+    return {
+      status_code: 200,
+      message: 'success',
+      data: user,
+    };
+  }
   async uploadImg(id: string, file: Express.Multer.File) {
     try {
       if (!id || !file) {

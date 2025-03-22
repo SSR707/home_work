@@ -42,10 +42,11 @@ export class AuthService {
         type: 'user_in_active',
       };
     }
-    const is_match_pass = BcryptEncryption.compare(
-      currentUser.password,
+    const is_match_pass = await BcryptEncryption.compare(
       password,
+      currentUser.password,
     );
+    console.log(is_match_pass)
     if (!is_match_pass) {
       return {
         status_code: HttpStatus.NOT_FOUND,
@@ -72,14 +73,14 @@ export class AuthService {
           this.configService.get<string>('REFRESH_TOKEN_TIME'),
       },
     };
-    return;
+
   }
 
   async signup(signupAuthDto: SignUpUserDto) {
     const currentUser = await this.userRepository.findOne({
       where: { email: signupAuthDto.email },
     });
-    if (currentUser && currentUser.is_active === true) {
+    if (currentUser) {
       return {
         status_code: HttpStatus.CONFLICT,
         message: 'User with this email already exists',
