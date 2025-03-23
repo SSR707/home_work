@@ -14,8 +14,18 @@ export class CreateProductDto {
     description: 'Category id',
     example: 'd3b2b2b7-1b5e-4c5d-8f4d-2b2b2b7b1e4c',
   })
-  @IsNotEmpty()
-  @IsUUID()
+  @IsNotEmpty({
+    message: JSON.stringify({
+      type: 'category_id',
+      message: 'Category ID is required',
+    }),
+  })
+  @IsUUID('4', {
+    message: JSON.stringify({
+      type: 'category_id',
+      message: 'Invalid UUID format for category ID',
+    }),
+  })
   category_id: string;
 
   @ApiProperty({
@@ -23,8 +33,15 @@ export class CreateProductDto {
     description: 'Title of Product',
     example: 'Iphone',
   })
-  @IsString()
-  @IsNotEmpty()
+  @IsString({
+    message: JSON.stringify({
+      type: 'title',
+      message: 'Title must be a string',
+    }),
+  })
+  @IsNotEmpty({
+    message: JSON.stringify({ type: 'title', message: 'Title is required' }),
+  })
   title: string;
 
   @ApiProperty({
@@ -32,7 +49,12 @@ export class CreateProductDto {
     description: ' Picture of Product',
     example: '.jpg',
   })
-  @IsString()
+  @IsString({
+    message: JSON.stringify({
+      type: 'picture',
+      message: 'Picture must be a string',
+    }),
+  })
   @IsOptional()
   picture: string;
 
@@ -41,7 +63,12 @@ export class CreateProductDto {
     description: 'Summary: of Product',
     example: 'summary...',
   })
-  @IsString()
+  @IsString({
+    message: JSON.stringify({
+      type: 'summary',
+      message: 'Summary must be a string',
+    }),
+  })
   @IsOptional()
   summary: string;
 
@@ -50,7 +77,12 @@ export class CreateProductDto {
     description: 'Description of Product',
     example: 'description...',
   })
-  @IsString()
+  @IsString({
+    message: JSON.stringify({
+      type: 'description',
+      message: 'Description must be a string',
+    }),
+  })
   @IsOptional()
   description: string;
 
@@ -59,9 +91,24 @@ export class CreateProductDto {
     description: 'Price of Product',
     example: 10000,
   })
-  @IsNumber()
-  @IsNotEmpty()
-  @IsPositive()
+  @IsNumber(
+    {},
+    {
+      message: JSON.stringify({
+        type: 'price',
+        message: 'Price must be a number',
+      }),
+    },
+  )
+  @IsNotEmpty({
+    message: JSON.stringify({ type: 'price', message: 'Price is required' }),
+  })
+  @IsPositive({
+    message: JSON.stringify({
+      type: 'price',
+      message: 'Price must be a positive number',
+    }),
+  })
   price: number;
 
   @ApiProperty({
@@ -69,7 +116,12 @@ export class CreateProductDto {
     description: 'Discount type of Product',
     example: '1',
   })
-  @IsString()
+  @IsString({
+    message: JSON.stringify({
+      type: 'discount_type',
+      message: 'Discount type must be a string',
+    }),
+  })
   @IsOptional()
   discount_type: string;
 
@@ -78,7 +130,12 @@ export class CreateProductDto {
     description: ' Discount Value of Product',
     example: 'skidka 20%',
   })
-  @IsString()
+  @IsString({
+    message: JSON.stringify({
+      type: 'discount_value',
+      message: 'Discount value must be a string',
+    }),
+  })
   @IsOptional()
   discount_value: string;
 
@@ -87,7 +144,7 @@ export class CreateProductDto {
     description: 'Tags of Product',
     example: 'tags...',
   })
-  @IsString()
+  @IsString({ message: JSON.stringify({ type: 'tags', message: 'Tags must be a string' }) })
   @IsOptional()
   tags: string;
 }

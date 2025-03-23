@@ -1,6 +1,7 @@
 import { BaseEntity } from 'src/common/database/BaseEntity';
-import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { CategoryEntity } from './category.entity';
+import { ReviewsEntity } from './reviews.entity';
 @Entity('product')
 export class ProductEntity extends BaseEntity {
   @Column({ type: 'uuid', name: 'category_id', nullable: true })
@@ -39,4 +40,10 @@ export class ProductEntity extends BaseEntity {
   @ManyToOne(() => CategoryEntity, (categoty) => categoty.products)
   @JoinColumn({ name: 'category_id' })
   category: CategoryEntity;
+
+  @OneToMany(() => ReviewsEntity, (reviews) => reviews.product , {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
+  reviews: ReviewsEntity[];
 }

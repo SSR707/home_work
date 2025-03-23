@@ -12,9 +12,7 @@ import { CategoryService } from './category.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { AdminGuard } from 'src/common/guard';
-import { Public } from 'src/common/decorator/auth.decorator';
-
+import { AdminGuard, Public } from 'src/common';
 @ApiTags('Category Api')
 @Controller('category')
 export class CategoryController {

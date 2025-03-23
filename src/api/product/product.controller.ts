@@ -15,9 +15,8 @@ import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ApiBearerAuth, ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
-import { AdminGuard } from 'src/common/guard';
-import { Public } from 'src/common/decorator/auth.decorator';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { AdminGuard, Public } from 'src/common';
 
 @ApiTags('Product Api')
 @Controller('product')

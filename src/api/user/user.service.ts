@@ -1,30 +1,30 @@
 import {
   BadRequestException,
+  HttpStatus,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UserEntity } from 'src/core/entity/user.entity';
-import { Repository } from 'typeorm';
 import { BcryptEncryption } from 'src/infrastructure/lib/bcrypt/bcrypt';
-import { FileService } from 'src/infrastructure/lib/file';
 import { config } from 'src/config';
+import { UserEntity, UserRepository } from 'src/core';
+import { FileService } from 'src/infrastructure';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(UserEntity)
-    private userRepository: Repository<UserEntity>,
+    private userRepository: UserRepository,
     private readonly fileService: FileService,
   ) {}
   async findAll() {
     const users = await this.userRepository.find({
       where: { is_active: true },
-      relations: ['address'],
+      relations: ['address', 'reviews'],
     });
     return {
-      status_code: 200,
+      status_code: HttpStatus.OK,
       message: 'success',
       data: users,
     };
@@ -33,13 +33,13 @@ export class UserService {
   async findOne(id: string) {
     const user = await this.userRepository.findOne({
       where: { id },
-      relations: ['address'],
+      relations: ['address', 'reviews'],
     });
     if (!user) {
       throw new NotFoundException(`User with id ${id} not found.`);
     }
     return {
-      status_code: 200,
+      status_code: HttpStatus.OK,
       message: 'success',
       data: user,
     };
@@ -56,9 +56,10 @@ export class UserService {
         created_at: true,
         updated_at: true,
       },
+      relations: ['address'],
     });
     return {
-      status_code: 200,
+      status_code: HttpStatus.OK,
       message: 'success',
       data: user,
     };
@@ -97,7 +98,7 @@ export class UserService {
       });
 
       return {
-        status_code: 200,
+        status_code: HttpStatus.OK,
         message: 'Image uploaded successfully',
         data: {
           image_url: pathImg,
@@ -124,7 +125,7 @@ export class UserService {
         updated_at: Date.now(),
       });
       return {
-        status_code: 200,
+        status_code: HttpStatus.OK,
         message: 'success',
       };
     } catch (error) {
@@ -142,7 +143,7 @@ export class UserService {
       }
       await this.userRepository.delete(id);
       return {
-        status_code: 200,
+        status_code: HttpStatus.OK,
         message: 'success',
       };
     } catch (error) {

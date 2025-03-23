@@ -1,26 +1,26 @@
 import {
   BadRequestException,
+  HttpStatus,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CategoryEntity } from 'src/core/entity/category.entity';
-import { Repository } from 'typeorm';
+import { CategoryEntity, CategoryRepository } from 'src/core';
 
 @Injectable()
 export class CategoryService {
   constructor(
     @InjectRepository(CategoryEntity)
-    private categoryRepository: Repository<CategoryEntity>,
+    private categoryRepository: CategoryRepository,
   ) {}
   async create(createCategoryDto: CreateCategoryDto) {
     try {
       const category = this.categoryRepository.create(createCategoryDto);
       this.categoryRepository.save(category);
       return {
-        status_code: 201,
+        status_code: HttpStatus.CREATED,
         message: 'Created',
         data: category,
       };
@@ -31,10 +31,10 @@ export class CategoryService {
 
   async findAll() {
     const categorys = await this.categoryRepository.find({
-      relations: ['products'],
+      relations: ['products', 'products.reviews'],
     });
     return {
-      status_code: 200,
+      status_code: HttpStatus.OK,
       message: 'success',
       data: categorys,
     };
@@ -43,13 +43,13 @@ export class CategoryService {
   async findOne(id: string) {
     const category = await this.categoryRepository.findOne({
       where: { id },
-      relations: ['products'],
+      relations: ['products', 'products.reviews'],
     });
     if (!category) {
       throw new NotFoundException(`Category with id ${id} not found.`);
     }
     return {
-      status_code: 200,
+      status_code: HttpStatus.OK,
       message: 'success',
       data: category,
     };
@@ -68,7 +68,7 @@ export class CategoryService {
         updated_at: Date.now(),
       });
       return {
-        status_code: 200,
+        status_code: HttpStatus.OK,
         message: 'success',
       };
     } catch (error) {
@@ -86,7 +86,7 @@ export class CategoryService {
       }
       await this.categoryRepository.delete(id);
       return {
-        status_code: 200,
+        status_code: HttpStatus.OK,
         message: 'success',
       };
     } catch (error) {

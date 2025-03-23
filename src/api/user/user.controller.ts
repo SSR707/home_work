@@ -23,9 +23,8 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { AdminGuard } from 'src/common/guard';
-import { UserID } from 'src/common/decorator/user-id.decorator';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { AdminGuard, UserID } from 'src/common';
 
 @ApiBearerAuth()
 @ApiTags('User Api')

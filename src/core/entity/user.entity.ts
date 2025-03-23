@@ -2,6 +2,7 @@ import { BaseEntity } from 'src/common/database/BaseEntity';
 import { RoleEnum } from 'src/common/enum/user.enums';
 import { Column, Entity, OneToMany } from 'typeorm';
 import { AddressEntity } from './address.entity';
+import { ReviewsEntity } from './reviews.entity';
 
 @Entity('users')
 export class UserEntity extends BaseEntity {
@@ -26,6 +27,15 @@ export class UserEntity extends BaseEntity {
   @Column({ type: 'boolean', name: 'is_active', default: false })
   is_active: boolean;
 
-  @OneToMany(() => AddressEntity, (address) => address.user)
+  @OneToMany(() => AddressEntity, (address) => address.user , {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
   address: AddressEntity[];
+
+  @OneToMany(() => ReviewsEntity, (reviews) => reviews.user , {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
+  reviews: ReviewsEntity[];
 }

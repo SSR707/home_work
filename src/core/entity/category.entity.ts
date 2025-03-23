@@ -12,7 +12,9 @@ export class CategoryEntity extends BaseEntity {
   @Column({ type: 'varchar', name: 'tag', nullable: true })
   tag: string;
 
-  @OneToMany(() => ProductEntity , (product) => product.category)
-  products: ProductEntity[]
-
+  @OneToMany(() => ProductEntity, (product) => product.category, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
+  products: ProductEntity[];
 }

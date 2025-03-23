@@ -1,22 +1,16 @@
-import { ConflictException, HttpStatus, Injectable } from '@nestjs/common';
-import { SignInUserDto } from './dto/signin-user.dto';
-import { SignUpUserDto } from './dto/signup-user.dto';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UserEntity } from 'src/core/entity/user.entity';
-import { Repository } from 'typeorm';
-import { BcryptEncryption } from 'src/infrastructure/lib/bcrypt/bcrypt';
-import { OtpEntity } from 'src/core/entity/otp.entity';
-import { EmailService } from 'src/infrastructure/lib/email/email.service';
-import { VerifyUserDto } from './dto/verify-user.dto';
-import { CustomJwtService } from 'src/infrastructure/lib/custom-jwt/custom-jwt.service';
 import { ConfigService } from '@nestjs/config';
+import { SignInUserDto, SignUpUserDto, VerifyUserDto } from './dto/index';
+import { OtpEntity, OtpRepository, UserEntity, UserRepository } from 'src/core';
+import { BcryptEncryption, CustomJwtService, EmailService } from 'src/infrastructure';
 @Injectable()
 export class AuthService {
   constructor(
     @InjectRepository(UserEntity)
-    private userRepository: Repository<UserEntity>,
+    private userRepository: UserRepository,
     @InjectRepository(OtpEntity)
-    private otpRepository: Repository<OtpEntity>,
+    private otpRepository: OtpRepository,
     private readonly emailServices: EmailService,
     private readonly jwtServices: CustomJwtService,
     private readonly configService: ConfigService,
@@ -46,7 +40,7 @@ export class AuthService {
       password,
       currentUser.password,
     );
-    console.log(is_match_pass)
+    console.log(is_match_pass);
     if (!is_match_pass) {
       return {
         status_code: HttpStatus.NOT_FOUND,
@@ -73,7 +67,6 @@ export class AuthService {
           this.configService.get<string>('REFRESH_TOKEN_TIME'),
       },
     };
-
   }
 
   async signup(signupAuthDto: SignUpUserDto) {

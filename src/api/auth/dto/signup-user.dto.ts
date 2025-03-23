@@ -8,7 +8,7 @@ import {
   IsString,
   IsStrongPassword,
 } from 'class-validator';
-import { RoleEnum } from 'src/common/enum/user.enums';
+import { RoleEnum } from 'src/common';
 
 export class SignUpUserDto {
   @ApiProperty({
@@ -16,8 +16,18 @@ export class SignUpUserDto {
     description: 'Fullname of user',
     example: 'Store001',
   })
-  @IsString()
-  @IsNotEmpty()
+  @IsString({
+    message: JSON.stringify({
+      type: 'fullname',
+      message: 'Fullname must be a string',
+    }),
+  })
+  @IsNotEmpty({
+    message: JSON.stringify({
+      type: 'fullname',
+      message: 'Fullname is required',
+    }),
+  })
   fullname: string;
 
   @ApiProperty({
@@ -25,9 +35,24 @@ export class SignUpUserDto {
     description: 'Email of user',
     example: 'jhondoe02@gmail.com',
   })
-  @IsString()
-  @IsEmail()
-  @IsNotEmpty()
+  @IsString({
+    message: JSON.stringify({
+      type: 'email',
+      message: 'Email must be a string',
+    }),
+  })
+  @IsEmail(
+    {},
+    {
+      message: JSON.stringify({
+        type: 'email',
+        message: 'Invalid email format',
+      }),
+    },
+  )
+  @IsNotEmpty({
+    message: JSON.stringify({ type: 'email', message: 'Email is required' }),
+  })
   email: string;
 
   @ApiProperty({
@@ -35,9 +60,27 @@ export class SignUpUserDto {
     description: 'password of user',
     example: 'password123',
   })
-  @IsString()
-  @IsStrongPassword()
-  @IsNotEmpty()
+  @IsString({
+    message: JSON.stringify({
+      type: 'password',
+      message: 'Password must be a string',
+    }),
+  })
+  @IsStrongPassword(
+    {},
+    {
+      message: JSON.stringify({
+        type: 'password',
+        message: 'Password is not strong enough',
+      }),
+    },
+  )
+  @IsNotEmpty({
+    message: JSON.stringify({
+      type: 'password',
+      message: 'Password is required',
+    }),
+  })
   password: string;
 
   @ApiProperty({
@@ -45,7 +88,12 @@ export class SignUpUserDto {
     description: 'Avatar of user',
     example: '.jpg',
   })
-  @IsString()
+  @IsString({
+    message: JSON.stringify({
+      type: 'avatar',
+      message: 'Avatar must be a string',
+    }),
+  })
   @IsOptional()
   avatar: string;
 
@@ -54,9 +102,24 @@ export class SignUpUserDto {
     description: 'Phone Number of user',
     example: '+998997777777',
   })
-  @IsString()
-  @IsPhoneNumber()
-  @IsNotEmpty()
+  @IsString({
+    message: JSON.stringify({
+      type: 'phone_number',
+      message: 'Phone number must be a string',
+    }),
+  })
+  @IsPhoneNumber(undefined, {
+    message: JSON.stringify({
+      type: 'phone_number',
+      message: 'Invalid phone number format',
+    }),
+  })
+  @IsNotEmpty({
+    message: JSON.stringify({
+      type: 'phone_number',
+      message: 'Phone number is required',
+    }),
+  })
   phone_number: string;
 
   @ApiProperty({
@@ -65,7 +128,9 @@ export class SignUpUserDto {
     enum: RoleEnum,
     default: RoleEnum.USER,
   })
-  @IsString()
+  @IsString({
+    message: JSON.stringify({ type: 'role', message: 'Role must be a string' }),
+  })
   @IsOptional()
   role: RoleEnum;
 }

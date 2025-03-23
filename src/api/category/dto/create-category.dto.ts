@@ -7,8 +7,18 @@ export class CreateCategoryDto {
     description: 'Title of Category',
     example: 'Products',
   })
-  @IsString()
-  @IsNotEmpty()
+  @IsString({
+    message: JSON.stringify({
+      type: 'name',
+      message: 'Category name must be a string',
+    }),
+  })
+  @IsNotEmpty({
+    message: JSON.stringify({
+      type: 'name',
+      message: 'Category name is required',
+    }),
+  })
   name: string;
 
   @ApiProperty({
@@ -16,7 +26,12 @@ export class CreateCategoryDto {
     description: 'Description of Category',
     example: 'description...',
   })
-  @IsString()
+  @IsString({
+    message: JSON.stringify({
+      type: 'description',
+      message: 'Description must be a string',
+    }),
+  })
   @IsOptional()
   description: string;
 
@@ -25,7 +40,7 @@ export class CreateCategoryDto {
     description: 'Tag of Category',
     example: 'Tag...',
   })
-  @IsString()
+  @IsString({ message: JSON.stringify({ type: 'tag', message: 'Tag must be a string' }) })
   @IsOptional()
   tag: string;
 }

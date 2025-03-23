@@ -1,29 +1,44 @@
 import {
   BadRequestException,
+  HttpStatus,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ProductEntity } from 'src/core/entity/product.entity';
-import { Repository } from 'typeorm';
-import { FileService } from 'src/infrastructure/lib/file';
 import { config } from 'src/config';
+import {
+  CategoryEntity,
+  CategoryRepository,
+  ProductEntity,
+  ProductRepository,
+} from 'src/core';
+import { FileService } from 'src/infrastructure';
 
 @Injectable()
 export class ProductService {
   constructor(
     @InjectRepository(ProductEntity)
-    private productRepository: Repository<ProductEntity>,
+    private productRepository: ProductRepository,
+    @InjectRepository(CategoryEntity)
+    private cateoryRepository: CategoryRepository,
     private readonly fileService: FileService,
   ) {}
   async create(createProductDto: CreateProductDto) {
     try {
+      const currentCategory = await this.cateoryRepository.findOne({
+        where: { id: createProductDto.category_id },
+      });
+      if (!currentCategory) {
+        throw new NotFoundException(
+          `Category with id ${createProductDto.category_id} not found.`,
+        );
+      }
       const product = this.productRepository.create(createProductDto);
       await this.productRepository.save(product);
       return {
-        status_code: 201,
+        status_code: HttpStatus.CREATED,
         message: 'success',
         data: product,
       };
@@ -34,10 +49,10 @@ export class ProductService {
 
   async findAll() {
     const products = await this.productRepository.find({
-      relations: ['category'],
+      relations: ['category', 'reviews'],
     });
     return {
-      status_code: 200,
+      status_code: HttpStatus.OK,
       message: 'success',
       data: products,
     };
@@ -46,13 +61,13 @@ export class ProductService {
   async findOne(id: string) {
     const product = await this.productRepository.findOne({
       where: { id },
-      relations: ['category'],
+      relations: ['category', 'reviews'],
     });
     if (!product) {
       throw new NotFoundException(`Product with id ${id} not found.`);
     }
     return {
-      status_code: 200,
+      status_code: HttpStatus.OK,
       message: 'success',
       data: product,
     };
@@ -87,7 +102,7 @@ export class ProductService {
         updated_at: Date.now(),
       });
       return {
-        status_code: 200,
+        status_code: HttpStatus.OK,
         message: 'success',
         data: {
           image_url: imgPath,
@@ -112,11 +127,11 @@ export class ProductService {
         updated_at: Date.now(),
       });
       return {
-        status_code: 200,
+        status_code: HttpStatus.OK,
         message: 'success',
       };
     } catch (error) {
-      throw new BadRequestException(`Error on update categiry: ${error}`);
+      throw new BadRequestException(`Error on update product: ${error}`);
     }
   }
 
@@ -130,11 +145,11 @@ export class ProductService {
       }
       await this.productRepository.delete(id);
       return {
-        status_code: 200,
+        status_code: HttpStatus.OK,
         message: 'success',
       };
     } catch (error) {
-      throw new BadRequestException(`Error on delete categiry: ${error}`);
+      throw new BadRequestException(`Error on delete product: ${error}`);
     }
   }
 }
